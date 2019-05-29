@@ -164,13 +164,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 				<li id="headerLogin" class="headerLogin">
 					<a href="#">登录</a>|
 				</li>
-				<li id="headerRegister" class="headerRegister">
-					<a href="#">注册</a>|
-				</li>
-				<li id="headerUsername" class="headerUsername"></li>
-				<li id="headerLogout" class="headerLogout">
-					<a href="#">[退出]</a>|
-				</li>
 						<li>
 							<a href="admin.html">管理后台</a>
 							|

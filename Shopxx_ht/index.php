@@ -1,3 +1,9 @@
+<?php
+	require_once dirname(__FILE__).'\util\admin_DBUtil.php';
+	header("ConTent-type:text/html;charset=utf-8");
+	session_start();
+	$obj=$_SESSION["user"];
+	?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -101,7 +107,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<a href="#" target="_blank">关于我们</a>
 				</div>
 				<div class="link">
-					<strong>admin</strong>
+					<strong><?=$obj->uName?></strong>
 					您好!
 					<a href="#" target="iframe">[账号设置]</a>
 					<a href="#" target="_top">[注销]</a>

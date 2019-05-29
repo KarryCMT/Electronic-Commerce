@@ -1,3 +1,10 @@
+<?php
+	require_once dirname(__FILE__).'\util\customer_DBUtil.php';
+	header("ConTent-type:text/html;charset=utf-8");
+	session_start();
+	$obj=$_SESSION["name"];
+	
+	?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -164,8 +171,8 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 	<div class="span10 last">
 		<div class="topNav clearfix">
 			<ul>
-				<li id="headerLogin" class="headerLogin">
-					<a href="customer_login.php">登录</a>|
+				<li >
+					<a href="customer_login.php"><?=$obj->cName?></a>|
 				</li>
 				<li id="headerRegister" class="headerRegister">
 					<a href="register.html">注册</a>|

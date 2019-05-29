@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("ConTent-type:text/html;charset=utf-8");
 //include 'DBUtil.php';
 require_once dirname(dirname(__FILE__)).'\util\customer_DBUtil.php';
@@ -15,7 +16,7 @@ $customer_logininfo->cPwd=$cPwd;
 if($flge){
     echo "<script>alert('登录成功')</script>";
     echo "<script>window.location.href='../index.php';</script>";
-    $_SESSION["name"]=$cName;
+    $_SESSION["name"]=$customer_logininfo;
 }else{
     echo "<script>alert('登录失败')</script>";
     //echo "<script>window.location.href='../customer_login.php';</script>";
