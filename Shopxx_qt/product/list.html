@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>商品 </title>
+	<meta name="author" content="hht" />
+	<meta name="copyright" content="hht" />
+<link href="../resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/shop/css/product.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/shop/js/jquery.js"></script>
+<script type="text/javascript" src="../resources/shop/js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../resources/shop/js/common.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $productForm = $("#productForm");
+	var $brandId = $("#brandId");
+	var $promotionId = $("#promotionId");
+	var $orderType = $("#orderType");
+	var $pageNumber = $("#pageNumber");
+	var $pageSize = $("#pageSize");
+	var $filter = $("#filter dl");
+	var $lastFilter = $("#filter dl:eq(2)");
+	var $hiddenFilter = $("#filter dl:gt(2)");
+	var $moreOption = $("#filter dd.moreOption");
+	var $moreFilter = $("#moreFilter a");
+	var $tableType = $("#tableType");
+	var $listType = $("#listType");
+	var $orderSelect = $("#orderSelect");
+	var $brand = $("#filter a.brand");
+	var $attribute = $("#filter a.attribute");
+	var $previousPage = $("#previousPage");
+	var $nextPage = $("#nextPage");
+	var $size = $("#layout a.size");
+	var $tagIds = $("input[name='tagIds']");
+	var $sort = $("#sort a");
+	var $startPrice = $("#startPrice");
+	var $endPrice = $("#endPrice");
+	var $result = $("#result");
+	var $productImage = $("#result img");
+	
+	
+	var layoutType = getCookie("layoutType");
+	if (layoutType == "listType") {
+		$listType.addClass("currentList");
+		$result.removeClass("table").addClass("list");
+	} else {
+		$tableType.addClass("currentTable");
+		$result.removeClass("list").addClass("table");
+	}
+	
+	$tableType.click(function() {
+		var $this = $(this);
+		if (!$this.hasClass("currentTable")) {
+			$this.addClass("currentTable");
+			$listType.removeClass("currentList");
+			$result.removeClass("list").addClass("table");
+			addCookie("layoutType", "tableType", {path: "/"});
+		}
+	});
+	
+	$listType.click(function() {
+		var $this = $(this);
+		if (!$this.hasClass("currentList")) {
+			$this.addClass("currentList");
+			$tableType.removeClass("currentTable");
+			$result.removeClass("table").addClass("list");
+			addCookie("layoutType", "listType", {path: "/"});
+		}
+	});
+	
+	$size.click(function() {
+		var $this = $(this);
+		$pageNumber.val(1);
+		$pageSize.val($this.attr("pageSize"));
+		$productForm.submit();
+		return false;
+	});
+	
+	$previousPage.click(function() {
+		$pageNumber.val(0);
+		$productForm.submit();
+		return false;
+	});
+	
+	$nextPage.click(function() {
+		$pageNumber.val(2);
+		$productForm.submit();
+		return false;
+	});
+	
+	$orderSelect.mouseover(function() {
+		var $this = $(this);
+		var offset = $this.offset();
+		var $menuWrap = $this.closest("div.orderSelect");
+		var $popupMenu = $menuWrap.children("div.popupMenu");
+		$popupMenu.css({left: offset.left, top: offset.top + $this.height()}).show();
+		$menuWrap.mouseleave(function() {
+			$popupMenu.hide();
+		});
+	});
+	
+	$tagIds.click(function() {
+		$pageNumber.val(1);
+		$productForm.submit();
+	});
+	
+	$sort.click(function() {
+		var $this = $(this);
+		if ($this.hasClass("current")) {
+			$orderType.val("");
+		} else {
+			$orderType.val($this.attr("orderType"));
+		}
+		$pageNumber.val(1);
+		$productForm.submit();
+		return false;
+	});
+	
+	$startPrice.add($endPrice).focus(function() {
+		$(this).siblings("button").show();
+	});
+	
+	$startPrice.add($endPrice).keypress(function(event) {
+		var $this = $(this);
+		var key = event.keyCode?event.keyCode:event.which;
+		if (key == 13 || (key >= 48 && key <= 57) || (key == 46 && $this.val().indexOf(".") == -1)) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+	
+	$productForm.submit(function() {
+		if ($brandId.val() == "") {
+			$brandId.prop("disabled", true)
+		}
+		if ($promotionId.val() == "") {
+			$promotionId.prop("disabled", true)
+		}
+		if ($orderType.val() == "" || $orderType.val() == "topDesc") {
+			$orderType.prop("disabled", true)
+		}
+		if ($pageNumber.val() == "" || $pageNumber.val() == "1") {
+			$pageNumber.prop("disabled", true)
+		}
+		if ($pageSize.val() == "" || $pageSize.val() == "20") {
+			$pageSize.prop("disabled", true)
+		}
+		if ($startPrice.val() == "" || !/^\d+(\.\d+)?$/.test($startPrice.val())) {
+			$startPrice.prop("disabled", true)
+		}
+		if ($endPrice.val() == "" || !/^\d+(\.\d+)?$/.test($endPrice.val())) {
+			$endPrice.prop("disabled", true)
+		}
+	});
+	
+	$productImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn"
+	});
+	
+	$.pageSkip = function(pageNumber) {
+		$pageNumber.val(pageNumber);
+		$productForm.submit();
+		return false;
+	}
+	
+});
+</script>
+</head>
+<body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+
+<div class="container header">
+	<div class="span5">
+		<div class="logo">
+			<a href="../demo.shopxx.html">
+				<img src="../upload/image/logo.gif" alt="SHOP++商城" />
+			</a>
+		</div>
+	</div>
+	<div class="span9">
+<div class="headerAd">
+					<img src="../resources/images/ad/header.jpg" width="320" height="50" alt="正品保障" title="正品保障" />
+</div>	</div>
+	<div class="span10 last">
+		<div class="topNav clearfix">
+			<ul>
+				<li id="headerLogin" class="headerLogin">
+					<a href="customer_login.html">登录</a>|
+				</li>
+				<li id="headerRegister" class="headerRegister">
+					<a href="register.html">注册</a>|
+				</li>
+				<li id="headerUsername" class="headerUsername"></li>
+				<li id="headerLogout" class="headerLogout">
+					<a href="#">[退出]</a>|
+				</li>
+						<li>
+							<a href="../admin.html">管理后台</a>
+							|
+						</li>
+						<li>
+							<a href="member/index.html">会员中心</a>
+							|
+						</li>
+						<li>
+							<a href="http://demo.shopxx.net/article/list/7.jhtml">关于我们</a>
+							
+						</li>
+			</ul>
+		</div>
+		<div class="cart">
+			<a href="http://demo.shopxx.net/cart/list.jhtml">购物车</a>
+		</div>
+			<div class="phone">
+				客服热线:
+				<strong>400-8888888</strong>
+			</div>
+	</div>
+	<div class="span24">
+		<ul class="mainNav">
+					<li>
+						<a href="../index.html">首页</a>
+						|
+					</li>
+					<li>
+						<a href="list.html">时尚女装</a>
+						|
+					</li>
+					<li>
+						<a href="list.html">精品男装</a>
+						|
+					</li>
+		
+					<li>
+						<a href="list.html">服饰配件</a>
+						|
+					</li>
+					<li>
+						<a href="list.html">时尚女鞋</a>
+						|
+					</li>
+					<li>
+						<a href="list.html">流行男鞋</a>
+						|
+					</li>
+		
+		</ul>
+	</div>
+	<div class="span24">
+		<div class="tagWrap">
+			<ul class="tag">
+						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/hot.gif) right no-repeat;">
+							<a href="list.html">热销</a>
+						</li>
+						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/new.gif) right no-repeat;">
+							<a href="list.html">最新</a>
+						</li>
+			</ul>
+			<div class="hotSearch">
+					热门搜索:
+						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=T%E6%81%A4">T恤</a>
+						<a href="search.jhtml~keyword=衬衫.html">衬衫</a>
+						<a href="search.jhtml~keyword=西服.html">西服</a>
+						<a href="search.jhtml~keyword=西裤.html">西裤</a>
+						<a href="search.jhtml~keyword=森马.html">森马</a>
+						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E4%B8%83%E5%8C%B9%E7%8B%BC">七匹狼</a>
+						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E6%A2%B5%E5%B8%8C%E8%94%93">梵希蔓</a>
+						<a href="search.jhtml~keyword=春夏新款.html">春夏新款</a>
+						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E7%89%9B%E4%BB%94%E8%A3%A4">牛仔裤</a>
+			</div>
+			<div class="search">
+				<form id="productSearchForm" action="/product/search.jhtml" method="get">
+					<input name="keyword" class="keyword" value="商品搜索" maxlength="30" />
+					<button type="submit">搜索</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>	<div class="container productList">
+		<div class="span6">
+			<div class="hotProductCategory">
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/1.jhtml">时尚女装</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/11.jhtml">连衣裙</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/12.jhtml">针织衫</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/13.jhtml">短外套</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/14.jhtml">小西装</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/2.jhtml">精品男装</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/21.jhtml">针织衫</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/22.jhtml">POLO衫</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/23.jhtml">休闲裤</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/24.jhtml">牛仔裤</a>
+									</dd>
+						</dl>
+					
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/4.jhtml">服饰配件</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/41.jhtml">女士腰带</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/42.jhtml">男士皮带</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/43.jhtml">女士围巾</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/44.jhtml">男士围巾</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/5.jhtml">时尚女鞋</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/51.jhtml">高帮鞋</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/52.jhtml">雪地靴</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/53.jhtml">中筒靴</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/54.jhtml">单鞋</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/6.jhtml">流行男鞋</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/59.jhtml">低帮鞋</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/60.jhtml">高帮鞋</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/61.jhtml">休闲鞋</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/62.jhtml">正装鞋</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/7.jhtml">潮流女包</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/63.jhtml">单肩包</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/64.jhtml">双肩包</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/65.jhtml">手提包</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/66.jhtml">手拿包</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/8.jhtml">精品男包</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/67.jhtml">单肩男</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/68.jhtml">双肩包</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/69.jhtml">手提包</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/70.jhtml">手拿包</a>
+									</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/9.jhtml">童装童鞋</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/71.jhtml">运动鞋</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/72.jhtml">牛仔裤</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/73.jhtml">套装</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/74.jhtml">裤子</a>
+									</dd>
+						</dl>
+						<dl class="last">
+							<dt>
+								<a href="http://demo.shopxx.net/product/list/10.jhtml">时尚饰品</a>
+							</dt>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/75.jhtml">项链</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/76.jhtml">手链</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/77.jhtml">戒指</a>
+									</dd>
+									<dd>
+										<a href="http://demo.shopxx.net/product/list/78.jhtml">耳饰</a>
+									</dd>
+						</dl>
+			</div>
+			<div class="hotProduct">
+				<div class="title">热销商品</div>
+				<ul>
+								<li>
+									<a href="content/201306/300.html" title="尚都比拉女装2013夏装新款蕾丝连衣裙 韩版修身雪纺打底裙子 春款">尚都比拉女装2013夏装新款蕾丝连</a>
+									<div>销售价: <strong>￥298.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/122.html" title="OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254">OSA春装外套女春秋韩版泡泡袖女士</a>
+										<div>
+											<div>评分: </div>
+											<div class="score8"></div>
+											<div>4.0</div>
+										</div>
+									<div>销售价: <strong>￥288.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/241.html" title="婷美正品 四季款魔鬼瘦塑身衣套装瘦腰翘臀B罩杯">婷美正品 四季款魔鬼瘦塑身衣套装</a>
+									<div>销售价: <strong>￥328.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/109.html" title="2013春夏柒牌男装正品西服 男立领修身韩版 西服套装 902C141200">2013春夏柒牌男装正品西服 男立领</a>
+										<div>
+											<div>评分: </div>
+											<div class="score8"></div>
+											<div>4.0</div>
+										</div>
+									<div>销售价: <strong>￥899.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/242.html" title="婷美正品秋冬保暖衣 轻压塑身衣美体衣保暖内衣 塑身内衣分体套装">婷美正品秋冬保暖衣 轻压塑身衣美</a>
+									<div>销售价: <strong>￥658.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/298.html" title="尚都比拉2013夏装新款淑女装 春款森女系 碎花修身短袖蕾丝连衣裙">尚都比拉2013夏装新款淑女装 春款</a>
+										<div>
+											<div>评分: </div>
+											<div class="score8"></div>
+											<div>4.0</div>
+										</div>
+									<div>销售价: <strong>￥289.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/96.html" title="梵希蔓2013新款夏装甜美女装连衣裙短袖雪纺蕾丝拼接公主裙百褶裙">梵希蔓2013新款夏装甜美女装连衣</a>
+									<div>销售价: <strong>￥268.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/246.html" title="维依恋2013夏装新款波西米亚印花雪纺半身裙抹胸连衣裙两穿长裙子">维依恋2013夏装新款波西米亚印花</a>
+										<div>
+											<div>评分: </div>
+											<div class="score10"></div>
+											<div>5.0</div>
+										</div>
+									<div>销售价: <strong>￥199.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li>
+									<a href="content/201306/221.html" title="2013新款夏季家居服女 大码全棉夏装家居睡衣 运动短袖短裤套装">2013新款夏季家居服女 大码全棉夏</a>
+									<div>销售价: <strong>￥121.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+								<li class="last">
+									<a href="content/201306/66.html" title="Max Toney 春装男士休闲西服便西装 时尚修身外套小西装 男 229">Max Toney 春装男士休闲西服便西</a>
+										<div>
+											<div>评分: </div>
+											<div class="score8"></div>
+											<div>4.0</div>
+										</div>
+									<div>销售价: <strong>￥453.00元</strong></div>
+									<div>月销量: <em>0</em></div>
+								</li>
+				</ul>
+			</div>
+		</div>
+		<div class="span18 last">
+			<div class="path">
+				<ul>
+					<li>
+						<a href="../demo.shopxx.html">首页</a>
+					</li>
+						<li class="last">商品</li>
+				</ul>
+			</div>
+			<form id="productForm" action="/product/list.jhtml" method="get">
+				<input type="hidden" id="brandId" name="brandId" value="" />
+				<input type="hidden" id="promotionId" name="promotionId" value="2" />
+				<input type="hidden" id="orderType" name="orderType" value="" />
+				<input type="hidden" id="pageNumber" name="pageNumber" value="1" />
+				<input type="hidden" id="pageSize" name="pageSize" value="20" />
+				<div class="bar">
+					<div id="layout" class="layout">
+						<label>布局:</label>
+						<a href="javascript:;" id="tableType" class="tableType">
+							<span>&nbsp;</span>
+						</a>
+						<a href="javascript:;" id="listType" class="listType">
+							<span>&nbsp;</span>
+						</a>
+						<label>数量:</label>
+						<a href="javascript:;" class="size current" pageSize="20">
+							<span>20</span>
+						</a>
+						<a href="javascript:;" class="size" pageSize="40">
+							<span>40</span>
+						</a>
+						<a href="javascript:;" class="size" pageSize="80">
+							<span>80</span>
+						</a>
+						<span class="page">
+							<label>共3个商品 1/1</label>
+						</span>
+					</div>
+					<div id="sort" class="sort">
+						<div id="orderSelect" class="orderSelect">
+								<span>置顶降序</span>
+							<div class="popupMenu">
+								<ul>
+										<li>
+											<a href="javascript:;" orderType="topDesc">置顶降序</a>
+										</li>
+										<li>
+											<a href="javascript:;" orderType="priceAsc">价格升序</a>
+										</li>
+										<li>
+											<a href="javascript:;" orderType="priceDesc">价格降序</a>
+										</li>
+										<li>
+											<a href="javascript:;" orderType="salesDesc">销量降序</a>
+										</li>
+										<li>
+											<a href="javascript:;" orderType="scoreDesc">评分降序</a>
+										</li>
+										<li>
+											<a href="javascript:;" orderType="dateDesc">日期降序</a>
+										</li>
+								</ul>
+							</div>
+						</div>
+						<a href="javascript:;" class="asc" orderType="priceAsc">价格</a>
+						<a href="javascript:;" class="desc" orderType="salesDesc">销量</a>
+						<a href="javascript:;" class="desc" orderType="scoreDesc">评分</a>
+						<input type="text" id="startPrice" name="startPrice" class="startPrice" value="" maxlength="16" title="价格过滤最低价格" onpaste="return false" />-<input type="text" id="endPrice" name="endPrice" class="endPrice" value="" maxlength="16" title="价格过滤最高价格" onpaste="return false" />
+						<button type="submit">确&nbsp;&nbsp;定</button>
+					</div>
+					<div class="tag">
+						<label>只查看:</label>
+								<label>
+									<input type="checkbox" name="tagIds" value="1" />热销
+								</label>
+								<label>
+									<input type="checkbox" name="tagIds" value="2" />最新
+								</label>
+					</div>
+				</div>
+				<div id="result" class="result table clearfix">
+						<ul>
+									<li class="last">
+										<a href="content/productInfo.html">
+											<img src="../upload/image/blank.gif" width="170" height="170" data-original="http://storage.shopxx.net/demo-image/3.0/201301/a39fce79-fc04-4400-9e0f-47cee57accab-thumbnail.jpg" />
+											<span class="price">
+												￥288.00
+													<del>￥345.60</del>
+											</span>
+											<span title="OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254">OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254</span>
+										</a>
+									</li>
+									<li class="last">
+										<a href="content/201306/205.html">
+											<img src="../upload/image/blank.gif" width="170" height="170" data-original="http://storage.shopxx.net/demo-image/3.0/201301/f5e39c37-94b2-462e-8e58-8bde3c5f1b8c-thumbnail.jpg" />
+											<span class="price">
+												￥358.00
+													<del>￥429.60</del>
+											</span>
+											<span title="伊芙丽2013春款新款女士西装领一粒扣短款小西装外套女1161024-2">伊芙丽2013春款新款女士西装领一粒扣短款小西装外套女1161024-2</span>
+										</a>
+									</li>
+									<li class="last">
+										<a href="content/201306/194.html">
+											<img src="../upload/image/blank.gif" width="170" height="170" data-original="http://storage.shopxx.net/demo-image/3.0/201301/69439b45-8626-451c-a31a-08f9df5d702b-thumbnail.jpg" />
+											<span class="price">
+												￥568.00
+													<del>￥681.60</del>
+											</span>
+											<span title="伊芙丽 2013春装新款 女装OL通勤修身长袖小外套女小西装1211120">伊芙丽 2013春装新款 女装OL通勤修身长袖小外套女小西装1211120</span>
+										</a>
+									</li>
+						</ul>
+				</div>
+			</form>
+		</div>
+	</div>
+<div class="container footer">
+	<div class="span24">
+		<div class="footerAd">
+					<img src="../resources/images/ad/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势" />
+</div>	</div>
+	<div class="span24">
+		<ul class="bottomNav">
+					<li>
+						<a href="#">关于我们</a>
+						|
+					</li>
+					<li>
+						<a href="#">联系我们</a>
+						|
+					</li>
+					<li>
+						<a href="#">诚聘英才</a>
+						|
+					</li>
+					<li>
+						<a href="#">法律声明</a>
+						|
+					</li>
+					<li>
+						<a href="../friend_link.jhtml.html">友情链接</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/article/list/4.jhtml" target="_blank">支付方式</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/article/list/5.jhtml" target="_blank">配送方式</a>
+						|
+					</li>
+					<li>
+						<a href="http://www.shopxx.net/">SHOP++官网</a>
+						|
+					</li>
+					<li>
+						<a href="http://bbs.shopxx.net/">SHOP++论坛</a>
+						
+					</li>
+		</ul>
+	</div>
+	<div class="span24">
+		<div class="copyright">Copyright © 2005-2013 SHOP++商城 版权所有</div>
+	</div>
+<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAzMTQyM180MzkzMV80MDAwMDA3NDc3Xw"></script></div></body>
+</html>
