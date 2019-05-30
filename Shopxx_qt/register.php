@@ -18,130 +18,161 @@
 <script type="text/javascript" src="resources/shop/js/common.js"></script>
 <script type="text/javascript" src="resources/shop/datePicker/WdatePicker.js"></script>
 <script type="text/javascript">
-$().ready(function() {
-
-	var $registerForm = $("#registerForm");
-	var $username = $("#username");
-	var $password = $("#password");
-	var $email = $("#email");
-	var $areaId = $("#areaId");
-	var $captcha = $("#captcha");
-	var $captchaImage = $("#captchaImage");
-	var $submit = $(":submit");
-	var $agreement = $("#agreement");
-	
-	// 地区选择
-	$areaId.lSelect({
-		url: "/common/area.jhtml"
-	});
-	
-	// 更换验证码
-	$captchaImage.click(function() {
-		$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=43ce3547-f786-4a9f-8698-94365b7095aa&timestamp=" + (new Date()).valueOf());
-	});
-	
-	// 注册协议
-	$agreement.hover(function() {
-		$(this).height(200);
-	});
-	
-	// 表单验证
-	$registerForm.validate({
-		rules: {
-			username: {
-				required: true,
-				pattern: /^[0-9a-z_A-Z\u4e00-\u9fa5]+$/,
-				minlength: 2,
-				remote: {
-					url: "/register/check_username.jhtml",
-					cache: false
-				}
-			},
-			password: {
-				required: true,
-				pattern: /^[^\s&\"<>]+$/,
-				minlength: 4
-			},
-			rePassword: {
-				required: true,
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-					,remote: {
-						url: "/register/check_email.jhtml",
-						cache: false
-					}
-			},
-			captcha: "required"
-		},
-		messages: {
-			username: {
-				pattern: "只允许包含中文、英文、数字、下划线",
-				remote: "用户名被禁用或已被注册"
-			},
-			password: {
-				pattern: "密码包含非法字符"
-			}
-				,email: {
-					remote: "E-mail已被注册"
-				}
-		},
-		submitHandler: function(form) {
-			$.ajax({
-				url: "/common/public_key.jhtml",
-				type: "GET",
-				dataType: "json",
-				cache: false,
-				beforeSend: function() {
-					$submit.prop("disabled", true);
-				},
-				success: function(data) {
-					var rsaKey = new RSAKey();
-					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
-					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
-					$.ajax({
-						url: $registerForm.attr("action"),
-						type: "POST",
-						data: {
-							username: $username.val(),
-							enPassword: enPassword,
-							email: $email.val()
-								,captchaId: "43ce3547-f786-4a9f-8698-94365b7095aa",
-								captcha: $captcha.val()
-									,memberAttribute_1: $(":input[name='memberAttribute_1']").val()
-									,memberAttribute_2: $(":input[name='memberAttribute_2']").val()
-									,memberAttribute_3: $(":input[name='memberAttribute_3']").val()
-									,memberAttribute_4: $(":input[name='memberAttribute_4']").val()
-									,memberAttribute_5: $(":input[name='memberAttribute_5']").val()
-						},
-						dataType: "json",
-						cache: false,
-						success: function(message) {
-							$.message(message);
-							if (message.type == "success") {
-								setTimeout(function() {
-									$submit.prop("disabled", false);
-									location.href = "/";
-								}, 3000);
-							} else {
-								$submit.prop("disabled", false);
-									$captcha.val("");
-									$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=43ce3547-f786-4a9f-8698-94365b7095aa&timestamp=" + (new Date()).valueOf());
-							}
-						}
-					});
-				}
-			});
-		}
-	});
-
-});
+//$().ready(function() {
+//
+//	var $registerForm = $("#registerForm");
+//	var $username = $("#username");
+//	var $password = $("#password");
+//	var $email = $("#email");
+//	var $areaId = $("#areaId");
+//	var $captcha = $("#captcha");
+//	var $captchaImage = $("#captchaImage");
+//	var $submit = $(":submit");
+//	var $agreement = $("#agreement");
+//	
+//	// 地区选择
+//	$areaId.lSelect({
+//		url: "/common/area.jhtml"
+//	});
+//	
+//	// 更换验证码
+//	$captchaImage.click(function() {
+//		$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=43ce3547-f786-4a9f-8698-94365b7095aa&timestamp=" + (new Date()).valueOf());
+//	});
+//	
+//	// 注册协议
+//	$agreement.hover(function() {
+//		$(this).height(200);
+//	});
+//	
+//	// 表单验证
+//	$registerForm.validate({
+//		rules: {
+//			username: {
+//				required: true,
+//				pattern: /^[0-9a-z_A-Z\u4e00-\u9fa5]+$/,
+//				minlength: 2,
+//				remote: {
+//					url: "/register/check_username.jhtml",
+//					cache: false
+//				}
+//			},
+//			password: {
+//				required: true,
+//				pattern: /^[^\s&\"<>]+$/,
+//				minlength: 4
+//			},
+//			rePassword: {
+//				required: true,
+//				equalTo: "#password"
+//			},
+//			email: {
+//				required: true,
+//				email: true
+//					,remote: {
+//						url: "/register/check_email.jhtml",
+//						cache: false
+//					}
+//			},
+//			captcha: "required"
+//		},
+//		messages: {
+//			username: {
+//				pattern: "只允许包含中文、英文、数字、下划线",
+//				remote: "用户名被禁用或已被注册"
+//			},
+//			password: {
+//				pattern: "密码包含非法字符"
+//			}
+//				,email: {
+//					remote: "E-mail已被注册"
+//				}
+//		},
+//		submitHandler: function(form) {
+//			$.ajax({
+//				url: "/common/public_key.jhtml",
+//				type: "GET",
+//				dataType: "json",
+//				cache: false,
+//				beforeSend: function() {
+//					$submit.prop("disabled", true);
+//				},
+//				success: function(data) {
+//					var rsaKey = new RSAKey();
+//					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+//					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
+//					$.ajax({
+//						url: $registerForm.attr("action"),
+//						type: "POST",
+//						data: {
+//							username: $username.val(),
+//							enPassword: enPassword,
+//							email: $email.val()
+//								,captchaId: "43ce3547-f786-4a9f-8698-94365b7095aa",
+//								captcha: $captcha.val()
+//									,memberAttribute_1: $(":input[name='memberAttribute_1']").val()
+//									,memberAttribute_2: $(":input[name='memberAttribute_2']").val()
+//									,memberAttribute_3: $(":input[name='memberAttribute_3']").val()
+//									,memberAttribute_4: $(":input[name='memberAttribute_4']").val()
+//									,memberAttribute_5: $(":input[name='memberAttribute_5']").val()
+//						},
+//						dataType: "json",
+//						cache: false,
+//						success: function(message) {
+//							$.message(message);
+//							if (message.type == "success") {
+//								setTimeout(function() {
+//									$submit.prop("disabled", false);
+//									location.href = "/";
+//								}, 3000);
+//							} else {
+//								$submit.prop("disabled", false);
+//									$captcha.val("");
+//									$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=43ce3547-f786-4a9f-8698-94365b7095aa&timestamp=" + (new Date()).valueOf());
+//							}
+//						}
+//					});
+//				}
+//			});
+//		}
+//	});
+//
+//});
 </script>
+<script>
+			function change(){
+				//做数据的发送 会需要一个东西: XMLHttpRequest()
+				//数据发送的核心 必须有这个东西才能实现数据的提交
+				var xmlhttp=new XMLHttpRequest();
+				var url="service/ajaxGetData.php?aId="+document.getElementById("parent").value;
+				xmlhttp.open("GET",url,true);
+				xmlhttp.send();
+				//这个表示XMLHttpRequest的状态发生改变的时候 会执行函数
+				//回调函数 
+				xmlhttp.onreadystatechange=function(){
+					 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+       				 {
+       				 	var sel=document.getElementById("son");
+       				 	sel.length=0;
+       				 	//xmlhttp.responseText 服务页面响应的内容
+            			var str=xmlhttp.responseText;
+            			var arr=str.split("-");
+            			for(var i=0;i<arr.length-1;i++){
+            				sel.options.add(new Option(arr[i]));
+            			}	
+      				 }
+				}
+			}
+</script>	
 </head>
 <body>
-
+<?php
+			require_once dirname(__FILE__) . '\util\register_DButil.php';
+			$dbutil=new DButil();
+			$sql_p="select * from s_areainfo where parentId=0";
+			$arr=$dbutil->register_add($sql_p);
+			?>
+		
 
 <!-- Copyright � 2005. Spidersoft Ltd -->
 <style>
@@ -151,45 +182,46 @@ A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
 </style>
 <script type="text/javascript">
-$().ready(function() {
-
-	var $headerLogin = $("#headerLogin");
-	var $headerRegister = $("#headerRegister");
-	var $headerUsername = $("#headerUsername");
-	var $headerLogout = $("#headerLogout");
-	var $productSearchForm = $("#productSearchForm");
-	var $keyword = $("#productSearchForm input");
-	var defaultKeyword = "商品搜索";
-	
-	var username = getCookie("username");
-	if (username != null) {
-		$headerUsername.text("您好, " + username).show();
-		$headerLogout.show();
-	} else {
-		$headerLogin.show();
-		$headerRegister.show();
-	}
-	
-	$keyword.focus(function() {
-		if ($keyword.val() == defaultKeyword) {
-			$keyword.val("");
-		}
-	});
-	
-	$keyword.blur(function() {
-		if ($keyword.val() == "") {
-			$keyword.val(defaultKeyword);
-		}
-	});
-	
-	$productSearchForm.submit(function() {
-		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
-			return false;
-		}
-	});
-
-});
+//$().ready(function() {
+//
+//	var $headerLogin = $("#headerLogin");
+//	var $headerRegister = $("#headerRegister");
+//	var $headerUsername = $("#headerUsername");
+//	var $headerLogout = $("#headerLogout");
+//	var $productSearchForm = $("#productSearchForm");
+//	var $keyword = $("#productSearchForm input");
+//	var defaultKeyword = "商品搜索";
+//	
+//	var username = getCookie("username");
+//	if (username != null) {
+//		$headerUsername.text("您好, " + username).show();
+//		$headerLogout.show();
+//	} else {
+//		$headerLogin.show();
+//		$headerRegister.show();
+//	}
+//	
+//	$keyword.focus(function() {
+//		if ($keyword.val() == defaultKeyword) {
+//			$keyword.val("");
+//		}
+//	});
+//	
+//	$keyword.blur(function() {
+//		if ($keyword.val() == "") {
+//			$keyword.val(defaultKeyword);
+//		}
+//	});
+//	
+//	$productSearchForm.submit(function() {
+//		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
+//			return false;
+//		}
+//	});
+//
+//});
 </script>
+
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
@@ -381,12 +413,21 @@ $().ready(function() {
 										</th>
 										<td>
 												<span class="fieldSet">
-													<select name="">
-														<option value=""></option>
-													</select>
-													<select name="">
-														<option value=""></option>
-													</select>
+													<select name="parent" id="parent" onchange="change()">
+														<?php
+														foreach($arr as $area){
+																		?>
+														<option value="<?=$area->aId?>"><?=$area->aName?></option>
+														<?php				
+														}	
+																		?>
+															
+																
+												</span>
+												<span>
+													<select id="son">
+															<option value="---选择地名---"></option>
+														</select>
 												</span>
 										</td>
 									</tr>
