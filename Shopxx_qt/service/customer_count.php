@@ -19,7 +19,7 @@ if($flge){
     $_SESSION["name"]=$customer_logininfo;
 }else{
     echo "<script>alert('登录失败')</script>";
-    //echo "<script>window.location.href='../customer_login.php';</script>";
+    echo "<script>window.location.href='../customer_login.php';</script>";
 }
 
 ?>

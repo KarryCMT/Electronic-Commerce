@@ -4,6 +4,8 @@ class customer_logininfo{
     private $cName;
     private $cPwd;
     private $cId;
+    private $cgId;
+    private $aId;
     private $cEmail;
     private $cSex;
     private $cBirth;

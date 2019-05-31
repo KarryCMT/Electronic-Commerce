@@ -6,7 +6,7 @@
 		private $fr_url;
 		private $fr_order;
 		private $fr_createDate;	
-	}
+	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -18,7 +18,7 @@
 	  }
 		
 	}
-	
+	}
 	
 	
 	?>

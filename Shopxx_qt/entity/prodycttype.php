@@ -4,7 +4,7 @@
 		private $ptName;
 		private $parentId;
 		private $remark;
-	}
+	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -15,5 +15,6 @@
 		$this -> $property_name = $value;
 	  }
 		
+	}
 	}
 	?>

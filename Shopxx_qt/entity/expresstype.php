@@ -8,7 +8,7 @@
 		private $cprice;
 		private $etintroduce;
 		private $remark;
-	}
+	
 				
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
@@ -22,5 +22,5 @@
 		
 		
 	}
-	
+	}
 	?>

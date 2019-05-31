@@ -6,7 +6,7 @@
 		private $AtImp;
 		private $AtRemark;
 		private $Atorder;		
-	}
+	
 	public function __GET($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -18,5 +18,5 @@
 	  }
 		
 	}
-	
+	}
 	?>

@@ -1,4 +1,11 @@
-<?phppublic function __get($property_name){
+<?php
+	class noticeinfo{
+		private $nId;
+		private $uId;
+		private $nContent;
+		private $createTime;
+		private $remark;
+		public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
 		} else {
@@ -8,13 +15,7 @@
 		$this -> $property_name = $value;
 	  }
 		
-	}
-	class noticeinfo{
-		private $nId;
-		private $uId;
-		private $nContent;
-		private $createTime;
-		private $remark;	
+	}	
 	}
 	
 	

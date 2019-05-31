@@ -21,13 +21,14 @@ class DBUtil{
         $res=mysqli_query($con,$sql);
         mysqli_close($con);
         if($res_msg=mysqli_fetch_array($res)){
-         	$customer_logininfo=new customer_logininfo();
-			
+         	$customer_logininfo=new customer_logininfo();			
 			$customer_logininfo->cName=$res_msg['cName'];
+			$customer_logininfo->cgId=$res_msg['cgId'];
 			$customer_logininfo->cPwd=$res_msg['cPwd'];
 			$customer_logininfo->cId=$res_msg['cId'];
 			$customer_logininfo->cEmail=$res_msg['cEmail'];
 			$customer_logininfo->cSex=$res_msg['cSex'];
+			$customer_logininfo->aId=$res_msg['aId'];
 			$customer_logininfo->cBirth=$res_msg['cBirth'];
 			$customer_logininfo->trueName=$res_msg['trueName'];
 			$customer_logininfo->cellPhone=$res_msg['cellPhone'];

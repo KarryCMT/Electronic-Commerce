@@ -5,7 +5,7 @@ header("Content-type: text/html; charset=utf-8");
 		private $cid;
 		private $AddCustomer;
 		private $isDef;	
-    }	
+   	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -18,5 +18,5 @@ header("Content-type: text/html; charset=utf-8");
 		
 	}
 	
-	
+	}
 	?>
