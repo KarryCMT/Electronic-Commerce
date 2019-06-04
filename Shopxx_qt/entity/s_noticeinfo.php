@@ -1,13 +1,12 @@
 <?php
-	header("Content-type:text/html;Charset-UTF-8");
-	class articletype{
-		private $Atid;
-		private $ArName;
-		private $AtImp;
-		private $AtRemark;
-		private $Atorder;		
-	
-	public function __GET($property_name){
+	class s_noticeinfo{
+		private $nId;
+		private $uId;
+		private $uTitle;
+		private $nContent;
+		private $createTime;
+		private $remark;
+		public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
 		} else {
@@ -17,6 +16,8 @@
 		$this -> $property_name = $value;
 	  }
 		
+	}	
 	}
-	}
+	
+	
 	?>

@@ -1,11 +1,11 @@
 <?php
-	class navigationinfo{
-		private $nid;
-		private $nName;
-		private $nUrl;
-		private $nPosition;
-		private $nIsNew;
-		private $orders;	
+	class s_paytypeinfo{
+		private $ptId;
+		private $ptName;
+		private $ptType;
+		private $ptLog;
+		private $ptIntroduce;
+		private $remark;
 	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {

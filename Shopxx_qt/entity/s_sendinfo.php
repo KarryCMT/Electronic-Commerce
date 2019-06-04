@@ -1,13 +1,13 @@
-<?php
-	header("Contment-type:text/hyml;Charset-UTF-8");
-	class cancelinfo{
-		private $cid;
-		private $oid;
-		private $cmemo;
+<?php 
+	class s_sendinfo{
+		private $sId;
+		private $oId;
+		private $express;
+		private $number;
 		private $createTime;
 		private $remark;
-	
-	public function __get($property_name){
+	 
+		public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
 		} else {
@@ -17,6 +17,8 @@
 		$this -> $property_name = $value;
 	  }
 		
+		
 	}
 	}
-	?>
+    
+?>

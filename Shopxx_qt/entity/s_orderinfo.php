@@ -1,5 +1,5 @@
 <?php
-	class orderinfo{
+	class s_orderinfo{
 		private $oId;
 		private $etId;
 		private $aId;

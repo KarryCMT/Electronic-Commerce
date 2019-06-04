@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).'\util\customer_DBUtil.php';
+	require_once dirname(__FILE__).'\util\DBUtil.php';
 	header("ConTent-type:text/html;charset=utf-8");
 	session_start();
 	$obj=$_SESSION["name"];
@@ -156,6 +156,12 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 //
 //});
 </script>
+<?php
+	require_once dirname(__FILE__)."\util\DBUtil.php";
+	$dbutil=new DBUtil();
+	$sql_s_articletype="select * from s_articletype ORDER BY Atorder ASC";
+	$arr_s_articletype=$dbutil->query_s_articletype($sql_s_articletype);
+	?>
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
@@ -276,27 +282,35 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 		<div class="span6 last">
 			<div id="newArticle" class="newArticle">
 					<ul class="tab">
+						<?php
+							foreach($arr_s_articletype as $s_articletype){
+							?>
 							<li>
-								<a href="article/list.html" target="_blank">商城动态</a>
+								<a href="article/list.html" target="_blank"><?=$s_articletype->ArName;?></a>
 							</li>
-							<li>
-								<a href="article/list.html" target="_blank">活动促销</a>
-							</li>
-							<li>
-								<a href="article/list.html" target="_blank">购物指南</a>
-							</li>
+							<?php
+							}
+						?>
 					</ul>
+						<?php
+							for($i=0;$i<count($arr_s_articletype);$i++){
+								$arr_articleinfo=$arr_s_articletype[$i]->Arr_article;
+								?>
 							<ul class="tabContent">
+								<?php
+										for($j=0;$j<count($arr_articleinfo);$j++){
+										?>
 									<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
+										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank"><?=$arr_articleinfo[$j]->ArTitle;?></a>
 									</li>
-									<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
-									</li>
-									<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
-									</li>
+									<?php
+										}
+										?>
 							</ul>
+							<?php
+							}
+							
+							?>
 							<ul class="tabContent">
 								<li>
 										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>

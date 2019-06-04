@@ -1,12 +1,10 @@
 <?php
-	class friendshipuinfo{
-		private $fr_id;
-		private $fr_Name;
-		private $fr_logo;
-		private $fr_url;
-		private $fr_order;
-		private $fr_createDate;	
-	
+    class s_addcustomer{
+    	private $Aid;
+		private $cid;
+		private $AddCustomer;
+		private $isDef;	
+   	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -18,7 +16,6 @@
 	  }
 		
 	}
+	
 	}
-	
-	
 	?>

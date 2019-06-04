@@ -167,7 +167,7 @@
 </head>
 <body>
 <?php
-			require_once dirname(__FILE__) . '\util\register_DButil.php';
+			require_once dirname(__FILE__) . '\util\DButil.php';
 			$dbutil=new DButil();
 			$sql_p="select * from s_areainfo where parentId=0";
 			$arr=$dbutil->register_add($sql_p);
@@ -180,6 +180,9 @@ A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00
 A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
 A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
+.none{
+	display: none;
+}
 </style>
 <script type="text/javascript">
 //$().ready(function() {
@@ -221,7 +224,43 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 //
 //});
 </script>
-
+<script>
+	function GetAdd(){
+				var xmlhttp=new XMLHttpRequest();
+				var url="AjaxGetDate.php?aId="+document.getElementById("parent").value;
+				xmlhttp.open("GET",url,true);
+				xmlhttp.send();
+				xmlhttp.onreadystatechange=function(){
+					 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+       				 {
+       				 	var sel=document.getElementById("son");
+       				 	sel.length=0;
+            			var str=xmlhttp.responseText;
+            			var arr=str.split("-");
+            			for(var i=0;i<arr.length-1;i++){
+            				sel.options.add(new Option(arr[i]));
+            			}	
+      				 }
+				}
+			}
+		</script>
+		
+		<?php 
+   			require_once dirname((__FILE__)).'\util\DBUtil.php';     
+			$DBUtil=new DBUtil();
+			$sql_p="select * from s_areainfo where parentId=0";
+			$arr=$DBUtil->query_add($sql_p);
+			$cgId;
+			$sql_cId="SELECT cId from s_customerinfo ORDER BY cId DESC LIMIT 1";
+			$res=$DBUtil->query_all($sql_cId);
+			if($msg=mysqli_fetch_array($res)){
+				$cId=$msg['cId'];
+				$cId+=1;
+			}
+			else{
+				$cId='1';
+			}
+	?>
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
@@ -342,14 +381,30 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<div class="title">
 						<strong>会员注册</strong>USER REGISTER
 					</div>
-					<form id="registerForm" action="/register/submit.jhtml" method="post">
+					<form id="registerForm" action="../Shopxx_qt/service/register_count.php" method="post">
 						<table>
+							<tr class="none">
+								<th>
+									<span class="requiredField"></span>身份ID:
+								</th>
+								<td>
+									<input value="<?=$cId;?>" type="text" id="username" name="cId" class="text" maxlength="20" readonly="readonly"/>
+								</td>
+							</tr>
+							<tr class="none">
+								<th>
+									<span class="requiredField"></span>用户ID:
+								</th>
+								<td>
+									<input value="1" type="text" id="username" name="cgId" class="text" maxlength="20" readonly="readonly"/>
+								</td>
+							</tr>
 							<tr>
 								<th>
 									<span class="requiredField">*</span>用户名:
 								</th>
 								<td>
-									<input type="text" id="username" name="username" class="text" maxlength="20" />
+									<input type="text" id="username" name="cName" class="text" maxlength="20" />
 								</td>
 							</tr>
 							<tr>
@@ -357,33 +412,33 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 									<span class="requiredField">*</span>密&nbsp;&nbsp;码:
 								</th>
 								<td>
-									<input type="password" id="password" name="password" class="text" maxlength="20" autocomplete="off" />
+									<input type="password" id="password" name="cPwd" class="text" maxlength="20" autocomplete="off" />
 								</td>
 							</tr>
-							<tr>
+							<!--<tr>
 								<th>
 									<span class="requiredField">*</span>确认密码:
 								</th>
 								<td>
-									<input type="password" name="rePassword" class="text" maxlength="20" autocomplete="off" />
+									<input type="password" name="cPwd" class="text" maxlength="20" autocomplete="off" />
 								</td>
-							</tr>
+							</tr>-->
 							<tr>
 								<th>
 									<span class="requiredField">*</span>E-mail:
 								</th>
 								<td>
-									<input type="text" id="email" name="email" class="text" maxlength="200" />
+									<input type="text" id="email" name="cEmail" class="text" maxlength="200" />
 								</td>
 							</tr>
-									<tr>
+									<!--<tr>
 										<th>
 											姓名:
 										</th>
 										<td>
 												<input type="text" name="memberAttribute_1" class="text" maxlength="200" />
 										</td>
-									</tr>
+									</tr>-->
 									<tr>
 										<th>
 											性别:
@@ -391,10 +446,10 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 										<td>
 												<span class="fieldSet">
 														<label>
-															<input type="radio" name="memberAttribute_2" value="male" />男
+															<input type="radio" name="cSex" value="男" />男
 														</label>
 														<label>
-															<input type="radio" name="memberAttribute_2" value="female" />女
+															<input type="radio" name="cSex" value="女" />女
 														</label>
 												</span>
 										</td>
@@ -404,7 +459,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 											出生日期:
 										</th>
 										<td>
-												<input type="text" name="memberAttribute_3" class="text" onfocus="WdatePicker();" />
+												<input type="text" name="cBirth" class="text" onfocus="WdatePicker();" />
 										</td>
 									</tr>
 									<tr>
@@ -412,8 +467,8 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 											地区:
 										</th>
 										<td>
-												<span class="fieldSet">
-													<select name="parent" id="parent" onchange="change()">
+												
+													<select name="parent" id="parent" onchange="GetAdd()">
 														<?php
 														foreach($arr as $area){
 																		?>
@@ -422,14 +477,14 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 														}	
 																		?>
 															
-																
-												</span>
-												<span>
+															</select>	
+											
+											
 													<select id="son">
-															<option value="---选择地名---"></option>
-														</select>
-												</span>
-										</td>
+															<option>---选择地名---</option>
+														
+												
+										
 									</tr>
 									<tr>
 										<th>

@@ -1,13 +1,9 @@
-<?php 
-	class sendinfo{
-		private $sId;
-		private $oId;
-		private $express;
-		private $number;
-		private $createTime;
-		private $remark;
-	 
-		public function __get($property_name){
+<?php
+	class s_position{
+		private $pid;
+		private $pName;
+	
+	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
 		} else {
@@ -17,8 +13,6 @@
 		$this -> $property_name = $value;
 	  }
 		
-		
 	}
 	}
-    
-?>
+	?>

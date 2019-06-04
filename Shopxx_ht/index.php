@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).'\util\admin_DBUtil.php';
+	require_once dirname(__FILE__).'\util\DBUtil.php';
 	header("ConTent-type:text/html;charset=utf-8");
 	session_start();
 	$obj=$_SESSION["user"];

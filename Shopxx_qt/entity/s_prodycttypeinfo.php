@@ -1,11 +1,8 @@
 <?php
-	class gatheringinfo{
-		private $gid;
-		private $cid;
-		private $oid;
-		private $gmoney;
-		private $memo;
-		private $createTime;
+	class s_prodycttypeinfo{
+		private $ptId;
+		private $ptName;
+		private $parentId;
 		private $remark;
 	
 	public function __get($property_name){
@@ -20,5 +17,4 @@
 		
 	}
 	}
-	
 	?>

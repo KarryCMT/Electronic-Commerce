@@ -1,5 +1,5 @@
 <?php
-   class receiveaddrinfo{
+   class s_receiveaddrinfo{
 	private $raId;
 	private $aId;
 	private $raName;

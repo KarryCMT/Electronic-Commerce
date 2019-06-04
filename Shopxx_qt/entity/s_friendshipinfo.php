@@ -1,10 +1,11 @@
 <?php
-	class proattvalues{
-		private $PAId;
-		private $proId;
-		private $AttValues;
-		private $ProRemark;
-		private $attId;	
+	class s_friendshipuinfo{
+		private $fr_id;
+		private $fr_Name;
+		private $fr_logo;
+		private $fr_url;
+		private $fr_order;
+		private $fr_createDate;	
 	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
@@ -18,4 +19,6 @@
 		
 	}
 	}
+	
+	
 	?>

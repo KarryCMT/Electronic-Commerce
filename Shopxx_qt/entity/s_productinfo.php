@@ -1,5 +1,5 @@
 <?php
-	class productinfo{
+	class s_productinfo{
 		private $pId;
 		private $ptId;
 		private $bId;

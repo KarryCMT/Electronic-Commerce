@@ -1,11 +1,11 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
-    class addcustomer{
-    	private $Aid;
-		private $cid;
-		private $AddCustomer;
-		private $isDef;	
-   	
+	class s_proattvalue{
+		private $PAId;
+		private $proId;
+		private $AttValue;
+		private $ProRemark;
+		private $attId;	
+	
 	public function __get($property_name){
 		if (isset($this -> $property_name)) {
 			return ($this -> $property_name);
@@ -17,6 +17,5 @@ header("Content-type: text/html; charset=utf-8");
 	  }
 		
 	}
-	
 	}
 	?>

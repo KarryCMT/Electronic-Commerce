@@ -1,10 +1,11 @@
 <?php
-	class paytypeinfo{
-		private $ptId;
-		private $ptName;
-		private $ptType;
-		private $ptLong;
-		private $ptIntroduce;
+	class s_productevaluationinfo{
+		private $peId;
+		private $pId;
+		private $cId;
+		private $peContent;
+		private $peState;
+		private $createTime;
 		private $remark;
 	
 	public function __get($property_name){

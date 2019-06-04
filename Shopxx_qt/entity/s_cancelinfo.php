@@ -1,8 +1,10 @@
 <?php
-	class prodycttype{
-		private $ptId;
-		private $ptName;
-		private $parentId;
+	
+	class s_cancelinfo{
+		private $cid;
+		private $oid;
+		private $cmemo;
+		private $createTime;
 		private $remark;
 	
 	public function __get($property_name){

@@ -1,6 +1,6 @@
 <?php
 header("ConTent-type:text/html;charset=utf-8");
-class admin_logininfo{
+class s_userinfo{
     private $uName;
     private $uPwd;
     private $uId;

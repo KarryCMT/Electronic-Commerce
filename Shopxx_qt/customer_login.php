@@ -314,7 +314,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 										<dt>还没有注册账号？</dt>
 										<dd>
 											立即注册即可体验在线购物！
-											<a href="register.html">立即注册</a>
+											<a href="register.php">立即注册</a>
 										</dd>
 									</dl>
 								</td>
@@ -375,7 +375,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 		</ul>
 	</div>
 	<div class="span24">
-		<div class="copyright">Copyright © 2005-2013 SHOP++商城 版权所有</div>
+		<div class="copyright">Copyright © 2005-2019 SHOP++商城 版权所有</div>
 	</div>
 <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAzMTQyM180MzkzMV80MDAwMDA3NDc3Xw"></script></div></body>
 </html>
