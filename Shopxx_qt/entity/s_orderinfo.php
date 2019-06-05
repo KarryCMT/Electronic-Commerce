@@ -21,10 +21,11 @@
 		} else {
 			return (null);
 		}
+	}
 		public function __set($property_name, $value) {
 		$this -> $property_name = $value;
 	  }
 		
-	}
+	
 	}
 	?>

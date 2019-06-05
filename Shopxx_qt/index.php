@@ -24,81 +24,81 @@
 <script type="text/javascript" src="resources/shop/slider/slider.js"></script>
 <script type="text/javascript" src="resources/shop/js/common.js"></script>
 <script type="text/javascript">
-//$().ready(function() {
-//
-//	var $slider = $("#slider");
-//	var $newArticleTab = $("#newArticle .tab");
-//	var $promotionProductTab = $("#promotionProduct .tab");
-//	var $promotionProductInfo = $("#promotionProduct .info");
-//	var $hotProductTab = $("#hotProduct .tab");
-//	var $newProductTab = $("#newProduct .tab");
-//	var $hotProductImage = $("#hotProduct img");
-//	var $newProductImage = $("#newProduct img");
-//	
-//	$slider.nivoSlider({
-//		effect: "random",
-//		animSpeed: 1000,
-//		pauseTime: 6000,
-//		controlNav: true,
-//		keyboardNav: false,
-//		captionOpacity: 0.4
-//	});
-//	
-//	$newArticleTab.tabs("#newArticle .tabContent", {
-//		tabs: "li",
-//		event: "mouseover",
-//		initialIndex: 1
-//	});
-//	
-//	$promotionProductTab.tabs("#promotionProduct .tabContent", {
-//		tabs: "li",
-//		event: "mouseover"
-//	});
-//	
-//	$hotProductTab.tabs("#hotProduct .tabContent", {
-//		tabs: "li",
-//		event: "mouseover"
-//	});
-//	
-//	$newProductTab.tabs("#newProduct .tabContent", {
-//		tabs: "li",
-//		event: "mouseover"
-//	});
-//	
-//	function promotionInfo() {
-//		$promotionProductInfo.each(function() {
-//			var $this = $(this);
-//			var beginDate = $this.attr("beginTimeStamp") != null ? new Date(parseFloat($this.attr("beginTimeStamp"))) : null;
-//			var endDate = $this.attr("endTimeStamp") != null ? new Date(parseFloat($this.attr("endTimeStamp"))) : null;
-//			if (beginDate == null || beginDate <= new Date()) {
-//				if (endDate != null && endDate >= new Date()) {
-//					var time = (endDate - new Date()) / 1000;
-//					$this.html("剩余时间:<em>" + Math.floor(time / (24 * 3600)) + "<\/em> 天 <em>" + Math.floor((time % (24 * 3600)) / 3600) + "<\/em> 时 <em>" + Math.floor((time % 3600) / 60) + "<\/em> 分");
-//				} else if (endDate != null && endDate < new Date()) {
-//					$this.html("活动已结束");
-//				} else {
-//					$this.html("正在进行中...");
-//				}
-//			}
-//		});
-//	}
-//	
-//	promotionInfo();
-//	setInterval(promotionInfo, 60 * 1000);
-//	
-//	$hotProductImage.lazyload({
-//		threshold: 100,
-//		effect: "fadeIn",
-//		skip_invisible: false
-//	});
-//	
-//	$newProductImage.lazyload({
-//		threshold: 100,
-//		effect: "fadeIn",
-//		skip_invisible: false
-//	});
-//
-//});
+$().ready(function() {
+
+	var $slider = $("#slider");
+	var $newArticleTab = $("#newArticle .tab");
+	var $promotionProductTab = $("#promotionProduct .tab");
+	var $promotionProductInfo = $("#promotionProduct .info");
+	var $hotProductTab = $("#hotProduct .tab");
+	var $newProductTab = $("#newProduct .tab");
+	var $hotProductImage = $("#hotProduct img");
+	var $newProductImage = $("#newProduct img");
+	
+	$slider.nivoSlider({
+		effect: "random",
+		animSpeed: 1000,
+		pauseTime: 6000,
+		controlNav: true,
+		keyboardNav: false,
+		captionOpacity: 0.4
+	});
+	
+	$newArticleTab.tabs("#newArticle .tabContent", {
+		tabs: "li",
+		event: "mouseover",
+		initialIndex: 1
+	});
+	
+	$promotionProductTab.tabs("#promotionProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	$hotProductTab.tabs("#hotProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	$newProductTab.tabs("#newProduct .tabContent", {
+		tabs: "li",
+		event: "mouseover"
+	});
+	
+	function promotionInfo() {
+		$promotionProductInfo.each(function() {
+			var $this = $(this);
+			var beginDate = $this.attr("beginTimeStamp") != null ? new Date(parseFloat($this.attr("beginTimeStamp"))) : null;
+			var endDate = $this.attr("endTimeStamp") != null ? new Date(parseFloat($this.attr("endTimeStamp"))) : null;
+			if (beginDate == null || beginDate <= new Date()) {
+				if (endDate != null && endDate >= new Date()) {
+					var time = (endDate - new Date()) / 1000;
+					$this.html("剩余时间:<em>" + Math.floor(time / (24 * 3600)) + "<\/em> 天 <em>" + Math.floor((time % (24 * 3600)) / 3600) + "<\/em> 时 <em>" + Math.floor((time % 3600) / 60) + "<\/em> 分");
+				} else if (endDate != null && endDate < new Date()) {
+					$this.html("活动已结束");
+				} else {
+					$this.html("正在进行中...");
+				}
+			}
+		});
+	}
+	
+	promotionInfo();
+	setInterval(promotionInfo, 60 * 1000);
+	
+	$hotProductImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn",
+		skip_invisible: false
+	});
+	
+	$newProductImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn",
+		skip_invisible: false
+	});
+
+});
 </script>
 </head>
 <body>
@@ -117,44 +117,44 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 
 
 <script type="text/javascript">
-//$().ready(function() {
-//
-//	var $headerLogin = $("#headerLogin");
-//	var $headerRegister = $("#headerRegister");
-//	var $headerUsername = $("#headerUsername");
-//	var $headerLogout = $("#headerLogout");
-//	var $productSearchForm = $("#productSearchForm");
-//	var $keyword = $("#productSearchForm input");
-//	var defaultKeyword = "商品搜索";
-//	
-//	var username = getCookie("username");
-//	if (username != null) {
-//		$headerUsername.text("您好, " + username).show();
-//		$headerLogout.show();
-//	} else {
-//		$headerLogin.show();
-//		$headerRegister.show();
-//	}
-//	
-//	$keyword.focus(function() {
-//		if ($keyword.val() == defaultKeyword) {
-//			$keyword.val("");
-//		}
-//	});
-//	
-//	$keyword.blur(function() {
-//		if ($keyword.val() == "") {
-//			$keyword.val(defaultKeyword);
-//		}
-//	});
-//	
-//	$productSearchForm.submit(function() {
-//		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
-//			return false;
-//		}
-//	});
-//
-//});
+$().ready(function() {
+
+	var $headerLogin = $("#headerLogin");
+	var $headerRegister = $("#headerRegister");
+	var $headerUsername = $("#headerUsername");
+	var $headerLogout = $("#headerLogout");
+	var $productSearchForm = $("#productSearchForm");
+	var $keyword = $("#productSearchForm input");
+	var defaultKeyword = "商品搜索";
+	
+	var username = getCookie("username");
+	if (username != null) {
+		$headerUsername.text("您好, " + username).show();
+		$headerLogout.show();
+	} else {
+		$headerLogin.show();
+		$headerRegister.show();
+	}
+	
+	$keyword.focus(function() {
+		if ($keyword.val() == defaultKeyword) {
+			$keyword.val("");
+		}
+	});
+	
+	$keyword.blur(function() {
+		if ($keyword.val() == "") {
+			$keyword.val(defaultKeyword);
+		}
+	});
+	
+	$productSearchForm.submit(function() {
+		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
+			return false;
+		}
+	});
+
+});
 </script>
 <?php
 	require_once dirname(__FILE__)."\util\DBUtil.php";
@@ -187,18 +187,21 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 				<li id="headerLogout" class="headerLogout">
 					<a href="#">[退出]</a>|
 				</li>
-						<li>
-							<a href="admin.html">管理后台</a>
-							|
-						</li>
-						<li>
-							<a href="member/index.html">会员中心</a>
-							|
-						</li>
-						<li>
-							<a href="article/list.html">关于我们</a>
-							
-						</li>
+				<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 0,3";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+//					  var_dump($arr);
+				?>
+				<?php
+									foreach($arr as $s_navigationinfo){
+          	?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
 			</ul>
 		</div>
 		<div class="cart">
@@ -211,35 +214,21 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-					<li>
-						<a href="demo.shopxx.html">首页</a>
-						|
-					</li>
-					<li>
-						<a href="product/list.html">时尚女装</a>
-						|
-					</li>
-					<li>
-						<a href="product/list.html">精品男装</a>
-						|
-					</li>
-		
-					<li>
-						<a href="product/list.html">服饰配件</a>
-						|
-					</li>
-					<li>
-						<a href="product/list.html">时尚女鞋</a>
-						|
-					</li>
-					<li>
-						<a href="product/list.html">流行男鞋</a>
-						|
-					</li>
-					<li>
-						<a href="product/list.html">童装童鞋</a>
-						
-					</li>
+			<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 3,5";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+				?>
+				<?php
+									foreach($arr as $s_navigationinfo){
+          	?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
+					
 		</ul>
 	</div>
 	<div class="span24">
@@ -311,19 +300,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 							}
 							
 							?>
-							<ul class="tabContent">
-								<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
-									</li>
-									<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
-									</li>
-							</ul>
-							<ul class="tabContent">
-								<li>
-										<a href="article/content/articleInfo.html" title="五月靓丽女人节 呵护自己" target="_blank">五月靓丽女人节 呵护自己</a>
-									</li>
-							</ul>
+							
 			</div>
 <div class="rightAd">
 					<img src="resources/images/ad/index_right.jpg" width="230" height="106" alt="春季新品" title="春季新品" />
@@ -335,48 +312,22 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<strong>热门品牌</strong>BRAND
 				</div>
 				<ul>
+						<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql_b="select * from s_brandinfo";
+	                  $arr= $DBUtil->query_brandinfo($sql_b);
+?>
+				<?php
+					foreach($arr as $brandinfo){
+					?>
+				<ul>
 							<li>
-								<a href="brand/content/brandInfo.html" title="梵希蔓"><img src="resources/images/brand/vimly.gif" alt="梵希蔓" /></a>
+								<a href="../Shopxx_qt/brand/list.php?bId=<?=$brandinfo->bId;?>" title="<?=$brandinfo->bName;?>"><img src="<?=$brandinfo->bLog;?>" alt="<?=$brandinfo->bName;?>" /></a>
 							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="伊芙丽"><img src="resources/images/brand/eifini.gif" alt="伊芙丽" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="尚都比拉"><img src="resources/images/brand/sentubila.gif" alt="尚都比拉" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="森马"><img src="resources/images/brand/semir.gif" alt="森马" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="以纯"><img src="resources/images/brand/yishion.gif" alt="以纯" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="李宁"><img src="resources/images/brand/lining.gif" alt="李宁" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="耐克"><img src="resources/images/brand/nike.gif" alt="耐克" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="阿迪达斯"><img src="resources/images/brand/adidas.gif" alt="阿迪达斯" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="Jack Jones"><img src="resources/images/brand/jackjones.gif" alt="Jack Jones" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="七匹狼"><img src="resources/images/brand/septwolves.gif" alt="七匹狼" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="恒源祥"><img src="resources/images/brand/hengyuanxiang.gif" alt="恒源祥" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="圣得西"><img src="resources/images/brand/sundance.gif" alt="圣得西" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="猫人"><img src="resources/images/brand/maoren.gif" alt="猫人" /></a>
-							</li>
-							<li>
-								<a href="brand/content/brandInfo.html" title="北极绒"><img src="resources/images/brand/beijirong.gif" alt="北极绒" /></a>
-							</li>
+							<?php
+					}
+					?>
+							
 				</ul>
 			</div>
 			<div class="hotProductCategory">
@@ -386,73 +337,127 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 				</div>
 				<div class="content">
 						<table>
-								<tr>
+									<tr>
 									<th>
-										<a href="product/list.html">时尚女装</a>
+										<?php
+					                    $DBUtil=new DBUtil();
+					                    $sql="SELECT * from s_navigationinfo  LIMIT 4,1";
+					                    $arr= $DBUtil->query_s_navigationinfo($sql);
+									    ?>
+									    <?php
+									        foreach($arr as $s_navigationinfo){
+          							    ?>
+										<a href="" ><?=$s_navigationinfo->nName;?></a>
+										
 									</th>
+										<?php	
+          								}
+          								?>
 									<td>
-											<a href="product/search.html">连衣裙</a>
-											<a href="product/list.html">针织衫</a>
-											<a href="product/list.html">短外套</a>
-											<a href="product/list.html">小西装</a>
-											<a href="product/list.html">牛仔裤</a>
-											<a href="product/list.html">T恤</a>
-											<a href="product/list.html">衬衫</a>
-											<a href="product/list.html">风衣</a>
-											<a href="product/list.html">卫衣</a>
-											<a href="product/list.html">裤子</a>
+										<?php
+							            $DBUtil=new DBUtil();
+							            $sql="SELECT * from s_producttypeinfo where parentId=3";
+							            $arr= $DBUtil->query_s_prodycttypeinfo($sql);
+										?>
+										<?php
+										foreach($arr as $s_prodycttypeinfo){
+		          						?>
+										<a href="product/list.html"><?=$s_prodycttypeinfo->ptName;?></a>
+										<?php	
+		          						}
+		        						?>	
 									</td>
-								</tr>
-								<tr>
+									</tr>
+									<tr>
 									<th>
-										<a href="product/list.html">精品男装</a>
+										<?php
+					                    $DBUtil=new DBUtil();
+					                    $sql="SELECT * from s_navigationinfo  LIMIT 5,1";
+					                    $arr= $DBUtil->query_s_navigationinfo($sql);
+									    ?>
+									    <?php
+									        foreach($arr as $s_navigationinfo){
+          							    ?>
+										<a href="" ><?=$s_navigationinfo->nName;?></a>
+										
 									</th>
+										<?php	
+          								}
+          								?>
 									<td>
-											<a href="product/list.html">针织衫</a>
-											<a href="product/list.html">POLO衫</a>
-											<a href="product/list.html">休闲裤</a>
-											<a href="product/list.html">牛仔裤</a>
-											<a href="product/list.html">T恤</a>
-											<a href="product/list.html">衬衫</a>
-											<a href="product/list.html">西服</a>
-											<a href="product/list.html">西裤</a>
-											<a href="product/list.html">风衣</a>
-											<a href="product/list.html">卫衣</a>
+											<?php
+							            $DBUtil=new DBUtil();
+							            $sql="SELECT * from s_producttypeinfo where parentId=2";
+							            $arr= $DBUtil->query_s_prodycttypeinfo($sql);
+										?>
+										<?php
+										foreach($arr as $s_prodycttypeinfo){
+		          						?>
+										<a href="product/list.html"><?=$s_prodycttypeinfo->ptName;?></a>
+										<?php	
+		          						}
+		        						?>	
 									</td>
 								</tr>
 							
 								<tr class="last">
 									<th>
-										<a href="product/list.html">服饰配件</a>
+										<?php
+					                    $DBUtil=new DBUtil();
+					                    $sql="SELECT * from s_navigationinfo  LIMIT 6,1";
+					                    $arr= $DBUtil->query_s_navigationinfo($sql);
+									    ?>
+									    <?php
+									        foreach($arr as $s_navigationinfo){
+          							    ?>
+										<a href="" ><?=$s_navigationinfo->nName;?></a>
 									</th>
+									<?php	
+          								}
+          								?>
 									<td>
-											<a href="product/list.html">女士腰带</a>
-											<a href="product/list.html">男士皮带</a>
-											<a href="product/list.html">女士围巾</a>
-											<a href="product/list.html">男士围巾</a>
-											<a href="product/list.html">帽子</a>
-											<a href="product/list.html">手套</a>
-											<a href="product/list.html">领带</a>
-											<a href="product/list.html">领结</a>
-											<a href="product/list.html">发饰</a>
-											<a href="product/list.html">袖扣</a>
+											<?php
+							            $DBUtil=new DBUtil();
+							            $sql="SELECT * from s_producttypeinfo where parentId=0";
+							            $arr= $DBUtil->query_s_prodycttypeinfo($sql);
+										?>
+										<?php
+										foreach($arr as $s_prodycttypeinfo){
+		          						?>
+										<a href="product/list.html"><?=$s_prodycttypeinfo->ptName;?></a>
+										<?php	
+		          						}
+		        						?>	
 									</td>
 								</tr>
 								<tr class="last">
 									<th>
-										<a href="product/list.html">服饰配件</a>
+										<?php
+					                    $DBUtil=new DBUtil();
+					                    $sql="SELECT * from s_navigationinfo  LIMIT 6,1";
+					                    $arr= $DBUtil->query_s_navigationinfo($sql);
+									    ?>
+									    <?php
+									        foreach($arr as $s_navigationinfo){
+          							    ?>
+										<a href="" ><?=$s_navigationinfo->nName;?></a>
 									</th>
+									<?php	
+          								}
+          								?>
 									<td>
-											<a href="product/list.html">女士腰带</a>
-											<a href="product/list.html">男士皮带</a>
-											<a href="product/list.html">女士围巾</a>
-											<a href="product/list.html">男士围巾</a>
-											<a href="product/list.html">帽子</a>
-											<a href="product/list.html">手套</a>
-											<a href="product/list.html">领带</a>
-											<a href="product/list.html">领结</a>
-											<a href="product/list.html">发饰</a>
-											<a href="product/list.html">袖扣</a>
+											<?php
+							            $DBUtil=new DBUtil();
+							            $sql="SELECT * from s_producttypeinfo where parentId=0";
+							            $arr= $DBUtil->query_s_prodycttypeinfo($sql);
+										?>
+										<?php
+										foreach($arr as $s_prodycttypeinfo){
+		          						?>
+										<a href="product/list.html"><?=$s_prodycttypeinfo->ptName;?></a>
+										<?php	
+		          						}
+		        						?>	
 									</td>
 								</tr>
 						</table>
@@ -538,6 +543,9 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					</div>
 					<ul class="tab">
 							<li>
+								<a href="product/list.html" target="_blank">手机数码</a>
+							</li>
+							<li>
 								<a href="product/list.html" target="_blank">时尚女装</a>
 							</li>
 							<li>
@@ -548,38 +556,51 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<div class="hotProductAd">
 			<img src="resources/images/ad/index_hot_product.jpg" width="260" height="343" alt="热门商品" title="热门商品" />
 					</div>
+					<?php
+	                         $DBUtil=new DBUtil();
+	                          $sql="select * from s_productinfo";
+	                            $arr=$DBUtil->query_s_productinfo($sql);
+                           ?>
+				                      <?php
+				                       	for($i=0;$i<16;$i+=4){
+					                     if($i%4==0){
+						                ?>
 						<ul class="tabContent">
+							 <?php
+					                    }
+					                         ?>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉2013春夏装新款女装 春款修身女裙 蕾丝雪纺短袖连衣裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/2553e635-7aa4-416a-83f4-5288145684a1-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfo.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉女装2013夏装新款蕾丝连衣裙 韩版修身雪纺打底裙子 春款" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/0ff130db-0a1b-4b8d-a918-ed9016317009-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfos.php" ><img   src="<?=$arr[$i+1]->pPhoto;?>" title="<?=$arr[$i+1]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉2013夏装新款 韩版优雅甜美淑女装 春款蕾丝雪纺连衣裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/51afeef5-f6cb-4936-abea-315cfca0edc0-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfos.php" ><img   src="<?=$arr[$i+2]->pPhoto;?>" title="<?=$arr[$i+2]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="梵希蔓2013夏装新款蕾丝连衣裙镂空假两件套连衣裙刺绣短袖连衣裙" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/9aafeb39-655a-43f9-97d5-248508deeeed-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfos.php" ><img   src="<?=$arr[$i+3]->pPhoto;?>" title="<?=$arr[$i+3]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="梵希蔓2013新款夏装甜美女装连衣裙短袖雪纺蕾丝拼接公主裙百褶裙" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/94fd156b-cbdc-40d7-8231-8e26bae2ed9c-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfossss.php" ><img  src="<?=$arr[$i+4]->pPhoto;?>" title="<?=$arr[$i+4]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="梵希蔓2013夏装淑女连衣裙雪纺刺绣背心裙高腰荷叶边连衣裙高腰" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/92a7bf42-6294-44a7-b518-19a77186d380-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfosssss.php" ><img   src="<?=$arr[$i+5]->pPhoto;?>" title="<?=$arr[$i+5]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="维依恋2013夏装新款波西米亚印花雪纺半身裙抹胸连衣裙两穿长裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/698a395e-ac95-4f76-a3c9-aa4e5fbc9217-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfossssss.php" ><img   src="<?=$arr[$i+6]->pPhoto;?>" title="<?=$arr[$i+6]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉2013春夏装新款女装 春款淑女两件套 蕾丝雪纺短袖连衣裙" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/3dc28bfe-b4a7-4346-89a1-86b87d229faa-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfossssss.php" ><img   src="<?=$arr[$i+7]->pPhoto;?>" title="<?=$arr[$i+7]->remark;?>"/></a>
 									</li>
+									
 						</ul>
 						<ul class="tabContent">
 									<li>
-										<a href="product/content/productInfo.html" title="2013春夏柒牌男装正品西服 男立领修身韩版 西服套装 902C141200" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/5e5be432-fbee-4bdd-a7bd-a92e01f9bfc4-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfo.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfohtml" title="Max Toney春装高端暗门襟修身长袖衬衫男 小方领休闲男士衬衣 678" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/a8db4410-05e5-4dfa-8217-eb885a104af3-thumbnail.jpg" /></a>
+										<a href="product/content/productInfohtml" title="Max Toney春装高端暗门襟修身长袖衬衫男 小方领休闲男士衬衣 678" target="_blank"><img src="upload/image/NIKE.jpg" data-original="http://storage.shopxx.net/demo-image/3.0/201301/a8db4410-05e5-4dfa-8217-eb885a104af3-thumbnail.jpg" /></a>
 									</li>
 									<li>
 										<a href="product/content/productInfo.html" title="圣得西 正品男装 经典版白蓝粉色 商务长袖正装衬衫" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/c5b1b396-181a-4805-9e68-9b400d71f91e-thumbnail.jpg" /></a>
@@ -625,7 +646,14 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 									<li>
 										<a href="product/content/productInfo.html" title="婷美塑身内衣正品燃脂塑身衣套装tingmei收腹瘦身衣薄束身衣" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/c41d0347-364c-42bb-baeb-25142c1ed167-thumbnail.jpg" /></a>
 									</li>
+						<?php
+					if($i%4==0){
+						?>
 						</ul>
+						<?php
+					}
+				}
+				?>
 			</div>
 		</div>
 		<div class="span24">
@@ -646,57 +674,48 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<div class="newProductAd">
 			<img src="resources/images/ad/index_new_product.jpg" width="260" height="343" alt="最新商品" title="最新商品" />
 					</div>
-						<ul class="tabContent">
+						 <?php
+				                       	for($i=0;$i<16;$i+=4){
+					                     if($i%4==0){
+						                ?>
+						                <ul class="tabContent">
+						                 <?php
+					                    }
+					                         ?>
 									<li>
-										<a href="product/content/productInfo.html" title="唯维欣怡2013春夏季新款韩版大码宽松显瘦女装荷叶边雪纺连衣裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/b499fb5e-999f-431b-a375-172ee09e4a3e-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfo.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/a39fce79-fc04-4400-9e0f-47cee57accab-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfos.php" ><img   src="<?=$arr[$i+1]->pPhoto;?>" title="<?=$arr[$i+1]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="梵希蔓 2013夏装新款女装女裙子长款雪纺百褶连衣裙韩版修身裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/3999515b-48ba-476e-b810-3ca57f4b9e29-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfoss.php" ><img   src="<?=$arr[$i+2]->pPhoto;?>" title="<?=$arr[$i+2]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉2013夏装新款 春款修身淑女装 雪纺短袖假两件套连衣裙子" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/4a51167a-89d5-4710-aca2-7c76edc355b8-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfosss.php" ><img   src="<?=$arr[$i+3]->pPhoto;?>" title="<?=$arr[$i+3]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="尚都比拉2013夏装新款 春款甜美淑女装 荷叶袖修身蕾丝雪纺连衣裙" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/750a9ce8-8c19-444d-b8cc-f3e7e786ec5d-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfossss.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="维依恋2013夏装新款韩版修身娃娃领女式短袖雪纺衫蕾丝拼接上衣" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/aec6d0ae-cad6-4cca-96bb-4bcd25e994cb-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfosssss.php" ><img   src="<?=$arr[$i+1]->pPhoto;?>" title="<?=$arr[$i+1]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="唯维欣怡2013春装新款韩版女装修身网纱长袖衬衣休闲女士白色衬衫" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/4652d7ae-3d2c-4692-89ea-0ca81f50eac3-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfossssss.php" ><img   src="<?=$arr[$i+2]->pPhoto;?>" title="<?=$arr[$i+2]->remark;?>"/></a>
 									</li>
 									<li>
-										<a href="product/content/productInfo.html" title="维依恋春装2013新款七分袖中长款风衣韩版修身双排扣外套春款大衣" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/94aa25f9-f3ef-4f7f-8c7c-197cd04b68ea-thumbnail.jpg" /></a>
+										<a href="product\content\carproductinfosssssss.php" ><img   src="<?=$arr[$i+3]->pPhoto;?>" title="<?=$arr[$i+3]->remark;?>"/></a>
 									</li>
+									
+				
+						<?php
+					if($i%4==0){
+						?>
 						</ul>
-						<ul class="tabContent">
-									<li>
-										<a href="product/content/productInfo.html" title="JackJones杰克琼斯男士立领拉链机车夹克B212121038" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/ca3043f5-dbb0-4a03-9bb6-8274f78b5d7e-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="Max Toney 春装时尚休闲多层卷边领莱卡棉T恤 男 长袖T恤 599" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/b998f840-91fc-41b6-b73d-70587babf760-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="圣得西 正品男装 浅蓝色细格休闲长袖衬衫 经典版" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/b04a22f5-267d-4e33-ac58-dda941eeaf84-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="2013春夏柒牌男装官方正品男士条纹T恤衫702T563985" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/fbb80ec8-a1d3-49de-b83b-79eae4b1ff69-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="夏装新品179 与狼共舞短袖T恤 气质拼接 男装正品 翻领修身6614" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/7b3c0647-1016-4d13-8b84-4d63818e1179-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="JackJones杰克琼斯男纯棉怀旧图案短袖T恤V212201016" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/a2ac0816-37e4-477a-b179-e64f71252cf5-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="Max Toney奢华春装 单扣高档全羊毛休闲西装西服 男 219" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/3c79f82f-f136-48aa-9e81-7e10fbb3de2a-thumbnail.jpg" /></a>
-									</li>
-									<li>
-										<a href="product/content/productInfo.html" title="春装新款159 与狼共舞长袖T恤 男装正品 翻领纯棉条纹体恤衫6534" target="_blank"><img src="upload/image/blank.gif" data-original="http://storage.shopxx.net/demo-image/3.0/201301/bb99deac-0b33-48f1-a3ad-e8310516be07-thumbnail.jpg" /></a>
-									</li>
+						<?php
+					}
+				}
+				?>
 						</ul>
 						<ul class="tabContent">
 									<li>
@@ -750,38 +769,26 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 	<div class="span24">
 		<ul class="bottomNav">
 					<li>
-						<a href="#">关于我们</a>
-						|
-					</li>
-					<li>
-						<a href="#">联系我们</a>
-						|
-					</li>
-					<li>
-						<a href="#">诚聘英才</a>
-						|
-					</li>
-					<li>
-						<a href="#">法律声明</a>
-						|
-					</li>
-					<li>
-						<a href="friend_link.html">友情链接</a>
-						|
-					</li>
-					<li>
-						<a href="#" target="_blank">支付方式</a>
-						|
-					</li>
-					<li>
-						<a href="#" target="_blank">配送方式</a>
-						|
-					</li>
+						<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 8,14";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+						?>
+						<?php
+									foreach($arr as $s_navigationinfo){
+          				?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          				}
+          				?>
+					</li>					
 
 		</ul>
 	</div>
 	<div class="span24">
-		<div class="copyright">Copyright © 20015-2016 SHOPXX 版权所有</div>
+		<div class="copyright">Copyright © 20015-2019 SHOPXX 版权所有</div>
 	</div>
 <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAzMTQyM180MzkzMV80MDAwMDA3NDc3Xw"></script></div></body>
 </html>

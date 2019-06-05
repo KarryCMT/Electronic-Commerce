@@ -1,7 +1,7 @@
 <?php
 	class s_brandinfo{
-		private $bid;
-		private $ptid;
+		private $bId;
+		private $ptId;
 		private $bname;
 		private $blog;
 		private $bintroduce;
@@ -14,11 +14,12 @@
 		} else {
 			return (null);
 		}
-		public function __set($property_name, $value) {
+	}
+	public	 function __set($property_name, $value) {
 		$this -> $property_name = $value;
 	  }
-	}
-	}
+	
+}
 	
 	
 	?>

@@ -8,7 +8,7 @@ class s_customergradeinfo{
 	    private $ShoMoney;
 	   	private $cgIntroduce
 	    private $remark;
-	    function __get($property_name){
+	  public  function __get($property_name){
 	
 	        if(isset($this->$property_name)){
 	
@@ -17,7 +17,7 @@ class s_customergradeinfo{
 	            return null;
 	        }
 	    }
-	    function __set($property_name,$value){
+	 public   function __set($property_name,$value){
 	
 	        $this->$property_name=$value;
 	    }
