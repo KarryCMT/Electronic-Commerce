@@ -54,7 +54,13 @@ $().ready(function() {
 </script>
 </head>
 <body>
-
+<?php 
+	require_once dirname(dirname(__FILE__)).'\util\DBUtil.php';
+	header("ConTent-type:text/html;charset=utf-8");
+	session_start();
+	$obj=$_SESSION["name"];
+	
+?>
 
 <!-- Copyright � 2005. Spidersoft Ltd -->
 <style>
@@ -119,7 +125,7 @@ $().ready(function() {
 		<div class="topNav clearfix">
 			<ul>
 				<li id="headerLogin" class="headerLogin">
-					<a href="http://demo.shopxx.net/login.jhtml">登录</a>|
+					<a href="http://demo.shopxx.net/login.jhtml"><?=$obj->cName?></a>|
 				</li>
 				<li id="headerRegister" class="headerRegister">
 					<a href="http://demo.shopxx.net/register.jhtml">注册</a>|
@@ -128,18 +134,20 @@ $().ready(function() {
 				<li id="headerLogout" class="headerLogout">
 					<a href="http://demo.shopxx.net/logout.jhtml">[退出]</a>|
 				</li>
-						<li>
-							<a href="../admin.html">管理后台</a>
-							|
-						</li>
-						<li>
-							<a href="http://demo.shopxx.net/member/index.jhtml">会员中心</a>
-							|
-						</li>
-						<li>
-							<a href="http://demo.shopxx.net/article/list/7.jhtml">关于我们</a>
-							
-						</li>
+						<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 0,3";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+				?>
+				<?php
+									foreach($arr as $s_navigationinfo){
+          	?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
 			</ul>
 		</div>
 		<div class="cart">
@@ -152,38 +160,20 @@ $().ready(function() {
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-					<li>
-						<a href="../demo.shopxx.html">首页</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/1.jhtml">时尚女装</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/2.jhtml">精品男装</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/3.jhtml">精致内衣</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/4.jhtml">服饰配件</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/5.jhtml">时尚女鞋</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/6.jhtml">流行男鞋</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/9.jhtml">童装童鞋</a>
-						
-					</li>
+					<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 3,5";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+				?>
+				<?php
+									foreach($arr as $s_navigationinfo){
+          	?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
 		</ul>
 	</div>
 	<div class="span24">
@@ -297,24 +287,26 @@ $().ready(function() {
 				<input type="hidden" id="pageNumber" name="pageNumber" value="1" />
 				<div class="result">
 						<ul>
-								<li>
-									<a href="content/articleInfo.html" title="五月靓丽女人节 呵护自己">五月靓丽女人节 呵护自己</a>
-									
-									<span title="2013-06-13 00:01:22">2013-06-13</span>
-									<p>      爱美的你是否早已按捺不住？五一过后就是热辣的夏天，我们为女性朋友们带来涵盖多种品牌的缤纷大促销，从鞋包到服装一应俱全，全面满足你的购物欲。4月27日至4月30日三天内，光临女人节，就有三重特惠供你选择，满199元减60元、满299...</p>
-								</li>
-								<li>
-									<a href="content/articleInfo.html" title="电子商务未来是否需要“移动”">电子商务未来是否需要“移动”</a>
-									
-									<span title="2013-06-13 00:01:23">2013-06-13</span>
-									<p>      2009年中，苹果公司市值超越谷歌；2010年5月，超越微软成为全球市值最高的科技公司；2012年8月12日，苹果市值超越石油巨头埃克森美孚，登顶全球市值榜首。一次次不断超越为我们展现的不仅是苹果公司活力与激情、动荡与辉煌相互交织的...</p>
-								</li>
-								<li>
-									<a href="content/articleInfo.html" title="合并运费返还方案公告">合并运费返还方案公告</a>
-									
-									<span title="2013-06-13 00:01:24">2013-06-13</span>
-									<p>尊敬的顾客，您好！     如果您的多个订单被合并发货， 并且您支付了多次运费的， 请在包裹签收7天后致电客服热线400-000-****， 或发邮件到官方邮箱进行登记，我们将在1个工作日内按实际发货情况将多收运费返还到您的商城个人账号。     ...</p>
-								</li>
+								<?php
+			                  $DBUtil=new DBUtil();
+			                  $sql="select * from s_articleinfo where AtId=1";
+			                  $arr= $DBUtil->query_s_articleinfo($sql);
+					 
+							?>
+         
+							<ul class="tabContent">
+									<?php
+          					foreach($arr as $s_articleinfo){
+          						?>
+							<li>
+								<a href="" ><?=$s_articleinfo->ArTitle;?></a>&nbsp;&nbsp;&nbsp;
+								<span title=""><?=$s_articleinfo->CrTime;?></span>&nbsp;&nbsp;&nbsp;
+								<span title=""><?=$s_articleinfo->AtAuthor;?></span>
+						    <p><?=$s_articleinfo->ArContent;?></p>
+							</li>
+									<?php	
+          					}
+          					?>
 								
 						</ul>
 				</div>
