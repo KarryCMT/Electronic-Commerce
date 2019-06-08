@@ -1,3 +1,8 @@
+<?php 
+	require_once dirname(dirname(__FILE__)).'\util\DBUtil.php';
+	session_start();
+	$obj=$_SESSION["name"];
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -225,7 +230,7 @@ $().ready(function() {
 </script>
 </head>
 <body>
-
+	
 
 <!-- Copyright � 2005. Spidersoft Ltd -->
 <style>
@@ -290,27 +295,29 @@ $().ready(function() {
 		<div class="topNav clearfix">
 			<ul>
 				<li id="headerLogin" class="headerLogin">
-					<a href="http://demo.shopxx.net/login.jhtml">登录</a>|
+					<a href="http://demo.shopxx.net/login.jhtml"><?=$obj->cName?></a>|
 				</li>
 				<li id="headerRegister" class="headerRegister">
-					<a href="http://demo.shopxx.net/register.jhtml">注册</a>|
+					<a href="../customer_login.php">退出</a>|
 				</li>
 				<li id="headerUsername" class="headerUsername"></li>
 				<li id="headerLogout" class="headerLogout">
 					<a href="http://demo.shopxx.net/logout.jhtml">[退出]</a>|
 				</li>
-						<li>
-							<a href="../admin.html">管理后台</a>
-							|
-						</li>
-						<li>
-							<a href="http://demo.shopxx.net/member/index.jhtml">会员中心</a>
-							|
-						</li>
-						<li>
-							<a href="http://demo.shopxx.net/article/list/7.jhtml">关于我们</a>
-							
-						</li>
+						<?php
+					$DBUtil=new DBUtil();
+	                $sql="SELECT * from s_navigationinfo  LIMIT 0,3";
+	                $arr= $DBUtil->query_s_navigationinfo($sql);
+					?>
+					<?php
+									foreach($arr as $s_navigationinfo){
+          			?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
 			</ul>
 		</div>
 		<div class="cart">
@@ -323,38 +330,20 @@ $().ready(function() {
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-					<li>
-						<a href="../demo.shopxx.html">首页</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/1.jhtml">时尚女装</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/2.jhtml">精品男装</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/3.jhtml">精致内衣</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/4.jhtml">服饰配件</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/5.jhtml">时尚女鞋</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/6.jhtml">流行男鞋</a>
-						|
-					</li>
-					<li>
-						<a href="http://demo.shopxx.net/product/list/9.jhtml">童装童鞋</a>
-						
-					</li>
+					<?php
+	                  $DBUtil=new DBUtil();
+	                  $sql="SELECT * from s_navigationinfo  LIMIT 3,5";
+	                  $arr= $DBUtil->query_s_navigationinfo($sql);
+				?>
+				<?php
+									foreach($arr as $s_navigationinfo){
+          	?>
+							<li>
+								<a href="" ><?=$s_navigationinfo->nName;?></a>|
+							</li>
+									<?php	
+          	}
+          	?>
 		</ul>
 	</div>
 	<div class="span24">
