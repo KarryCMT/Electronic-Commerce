@@ -16,84 +16,84 @@
 <script type="text/javascript" src="resources/shop/js/base64.js"></script>
 <script type="text/javascript" src="resources/shop/js/common.js"></script>
 <script type="text/javascript">
-//    $().ready(function() {
-//
-//	var $loginForm = $("#loginForm");
-//	var $username = $("#username");
-//	var $password = $("#password");
-//	var $captcha = $("#captcha");
-//	var $captchaImage = $("#captchaImage");
-//	var $isRememberUsername = $("#isRememberUsername");
-//	var $submit = $(":submit");
-//
-//	// 记住用户名
-//	if (getCookie("memberUsername") != null) {
-//		$isRememberUsername.prop("checked", true);
-//		$username.val(getCookie("memberUsername"));
-//		$password.focus();
-//	} else {
-//		$isRememberUsername.prop("checked", false);
-//		$username.focus();
-//	}
-//
-//	// 更换验证码
+      $().ready(function() {
+
+	var $loginForm = $("#loginForm");
+	var $username = $("#username");
+	var $password = $("#password");
+	var $captcha = $("#captcha");
+	var $captchaImage = $("#captchaImage");
+	var $isRememberUsername = $("#isRememberUsername");
+	var $submit = $(":submit");
+
+	// 记住用户名
+	if (getCookie("memberUsername") != null) {
+		$isRememberUsername.prop("checked", true);
+		$username.val(getCookie("memberUsername"));
+		$password.focus();
+	} else {
+		$isRememberUsername.prop("checked", false);
+		$username.focus();
+	}
+
+	// 更换验证码
 //	$captchaImage.click(function() {
 //		$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=41a32969-d94c-4d5f-86a9-e40d055b35ab&timestamp=" + (new Date()).valueOf());
 //	});
-//
-//	// 表单验证、记住用户名
-//	$loginForm.validate({
-//		rules: {
-//			username: "required",
-//			password: "required"
-//				,captcha: "required"
-//		},
-//		submitHandler: function(form) {
-//			$.ajax({
-//				url: "/common/public_key.jhtml",
-//				type: "GET",
-//				dataType: "json",
-//				cache: false,
-//				beforeSend: function() {
-//					$submit.prop("disabled", true);
-//				},
-//				success: function(data) {
-//					var rsaKey = new RSAKey();
-//					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
-//					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
-//					$.ajax({
-//						url: $loginForm.attr("action"),
-//						type: "POST",
-//						data: {
-//							username: $username.val(),
-//							enPassword: enPassword
-//								,captchaId: "41a32969-d94c-4d5f-86a9-e40d055b35ab",
-//								captcha: $captcha.val()
-//						},
-//						dataType: "json",
-//						cache: false,
-//						success: function(message) {
-//							if ($isRememberUsername.prop("checked")) {
-//								addCookie("memberUsername", $username.val(), {expires: 7 * 24 * 60 * 60});
-//							} else {
-//								removeCookie("memberUsername");
-//							}
-//							$submit.prop("disabled", false);
-//							if (message.type == "success") {
-//									location.href = "/member/index.jhtml";
-//							} else {
-//								$.message(message);
-//									$captcha.val("");
-//									$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=41a32969-d94c-4d5f-86a9-e40d055b35ab&timestamp=" + (new Date()).valueOf());
-//							}
-//						}
-//					});
-//				}
-//			});
-//		}
-//	});
-//
-//});
+
+	// 表单验证、记住用户名
+	$loginForm.validate({
+		rules: {
+			username: "required",
+			password: "required"
+				,captcha: "required"
+		},
+		submitHandler: function(form) {
+			$.ajax({
+				url: "/common/public_key.jhtml",
+				type: "GET",
+				dataType: "json",
+				cache: false,
+				beforeSend: function() {
+					$submit.prop("disabled", true);
+				},
+				success: function(data) {
+					var rsaKey = new RSAKey();
+					rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+					var enPassword = hex2b64(rsaKey.encrypt($password.val()));
+					$.ajax({
+						url: $loginForm.attr("action"),
+						type: "POST",
+						data: {
+							username: $username.val(),
+							enPassword: enPassword
+								,captchaId: "41a32969-d94c-4d5f-86a9-e40d055b35ab",
+								captcha: $captcha.val()
+						},
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							if ($isRememberUsername.prop("checked")) {
+								addCookie("memberUsername", $username.val(), {expires: 7 * 24 * 60 * 60});
+							} else {
+								removeCookie("memberUsername");
+							}
+							$submit.prop("disabled", false);
+							if (message.type == "success") {
+									location.href = "/member/index.jhtml";
+							} else {
+								$.message(message);
+									$captcha.val("");
+									$captchaImage.attr("src", "/common/captcha.jhtml?captchaId=41a32969-d94c-4d5f-86a9-e40d055b35ab&timestamp=" + (new Date()).valueOf());
+							}
+						}
+					});
+				}
+			});
+		}
+	});
+
+});
 </script>
 </head>
 <body>
@@ -107,44 +107,44 @@ A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
 </style>
 <script type="text/javascript">
-//$().ready(function() {
-//
-//	var $headerLogin = $("#headerLogin");
-//	var $headerRegister = $("#headerRegister");
-//	var $headerUsername = $("#headerUsername");
-//	var $headerLogout = $("#headerLogout");
-//	var $productSearchForm = $("#productSearchForm");
-//	var $keyword = $("#productSearchForm input");
-//	var defaultKeyword = "商品搜索";
-//
-//	var username = getCookie("username");
-//	if (username != null) {
-//		$headerUsername.text("您好, " + username).show();
-//		$headerLogout.show();
-//	} else {
-//		$headerLogin.show();
-//		$headerRegister.show();
-//	}
-//
-//	$keyword.focus(function() {
-//		if ($keyword.val() == defaultKeyword) {
-//			$keyword.val("");
-//		}
-//	});
-//
-//	$keyword.blur(function() {
-//		if ($keyword.val() == "") {
-//			$keyword.val(defaultKeyword);
-//		}
-//	});
-//
-//	$productSearchForm.submit(function() {
-//		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
-//			return false;
-//		}
-//	});
-//
-//});
+$().ready(function() {
+
+	var $headerLogin = $("#headerLogin");
+	var $headerRegister = $("#headerRegister");
+	var $headerUsername = $("#headerUsername");
+	var $headerLogout = $("#headerLogout");
+	var $productSearchForm = $("#productSearchForm");
+	var $keyword = $("#productSearchForm input");
+	var defaultKeyword = "商品搜索";
+
+	var username = getCookie("username");
+	if (username != null) {
+		$headerUsername.text("您好, " + username).show();
+		$headerLogout.show();
+	} else {
+		$headerLogin.show();
+		$headerRegister.show();
+	}
+
+	$keyword.focus(function() {
+		if ($keyword.val() == defaultKeyword) {
+			$keyword.val("");
+		}
+	});
+
+	$keyword.blur(function() {
+		if ($keyword.val() == "") {
+			$keyword.val(defaultKeyword);
+		}
+	});
+
+	$productSearchForm.submit(function() {
+		if ($.trim($keyword.val()) == "" || $keyword.val() == defaultKeyword) {
+			return false;
+		}
+	});
+
+});
 </script>
 <div class="container header">
 	<div class="span5">

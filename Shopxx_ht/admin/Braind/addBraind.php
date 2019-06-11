@@ -32,6 +32,19 @@ A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background
 A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
 </style>
+ <?php
+   	require_once dirname(dirname(__FILE__))."\util\DBUtil.php";
+   	$dbutil=new DBUtil();
+   	$sql_bId="selcet bId from s_brandinfo order by bId desc limit 1";
+   	$bId=1;
+   	if($msg=mysqli_fetch_array($res)){
+   		$bId=$msg['bId'];
+   		$bId=$bId+1;
+   	}
+   	$sql="select * from s_producttyoeinfo";
+   	$arr=$dbutil->query_s_producttyoeinfo($sql);
+   	
+   	?>
 	<div class="path">
 		<a href="http://demo.shopxx.net/admin/common/index.jhtml">首页</a> &raquo; 添加商品品牌</div>
 	<form id="inputForm" action="/Shopxx_ht/servlet/Braind_addServlet" method="post" enctype="multipart/form-data">

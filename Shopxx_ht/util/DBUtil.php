@@ -1,6 +1,7 @@
 <?php
-//include 'Reception_logininfo.php';
 require_once dirname(dirname(__FILE__)).'\entity\s_userinfo.php';
+require_once dirname(dirname(__FILE__)).'\entity\s_brandinfo.php';
+require_once dirname(dirname(__FILE__)).'\entity\s_prodycttypeinfo.php';
 class DBUtil{
 
     function getCon(){
@@ -35,5 +36,58 @@ class DBUtil{
             return null;
         }
     }
+		//查询商品品牌
+		function query_s_brandinfo($sql){
+				$dbutil=new DBUtil();
+				$res_band=$bdutil->query_all($sql);
+				$arr=null;
+				while($res_msg=mysqli_fetch_all($res_brand)){
+					$brand->bId=$res_msg['bId'];
+					$brand->ptId=$res_msg['ptId'];
+					$brand->bName=$res_msg['bName'];
+					$brand->bLong=$res_msg['bLong'];
+					$brand->bIntroduce=$res_msg['bIntroduce'];
+					$brand->bUrl=$res_msg['bUrl'];
+					$brand->remark=$res_msg['remark'];
+					$arr[]=$brand;
+				}
+				return $arr;
+			}
+		//添加商品品牌
+		function query_add_s_brandinfo($s_brandinfo){
+//				var_dump($brandinfo);
+				$bId=$s_brandinfo->bId;
+				$ptId=$s_brandinfo->ptId;
+				$bName=$s_brandinfo->bName;
+				$bLog=$s_brandinfo->bLog;
+				$bIntroduce=$s_brandinfo->bIntroduce；
+				$bUrl=$s_brandinfo->bUrl;
+				$remark=$s_brandinfo->reamrk;
+				
+				$dbutil=new DBUtil();
+				$con=$dbutil->getCon();
+				$sql='insert into s_brandinfo values(?,?,?,?,?,?,?)';
+				$stm=$con->prepare($sql);
+				$stm->bind_param('iisssss',$bId,$ptId,$bName,$bLog,$bIntroduce,$bUrl,$reamrk);
+				$flag=$stm->execute();
+				return $flag;
+			}
+		
+		function query_add_s_producttypeinfo($sql){
+				$dbutil=new DBUtil();
+				$res_type=$dbutil->query_all($sql);
+				$arr=null;
+				while($res_msg=mysqli_fetch_array($res_type)){
+					$type->ptId=$res_msg['ptId'];
+					$type->ptName=$res_msg['ptName'];
+					$type->parentId=$res_msg['parentId'];
+					$type->reamrk=$res_msg['reamrk'];
+					$arr[]=$type;
+				}
+				return $arr;
+			}
+	
+	
+	
 }
 ?>
