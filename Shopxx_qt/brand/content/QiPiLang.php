@@ -10,11 +10,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>NIKE - Powered By SHOP++</title>
+	<title>QIPILANG - Powered By SHOP++</title>
 	<meta name="author" content="SHOP++ Team" />
 	<meta name="copyright" content="SHOP++" />
-		<meta name="keywords" content="Jack Jones" />
-		<meta name="description" content="Jack Jones" />
+		<meta name="keywords" content="QIPILANG" />
+		<meta name="description" content="QIPILANG" />
 <link href="../../resources/shop/css/common.css" rel="stylesheet" type="text/css" />
 <link href="../../resources/shop/css/product.css" rel="stylesheet" type="text/css" />
 <link href="../../resources/shop/css/brand.css" rel="stylesheet" type="text/css" />
@@ -422,9 +422,9 @@ $().ready(function() {
 				</ul>
 			</div>
 			<div class="top">
-					<img src="../../resources/images/brand/jackjones.gif" alt="Jack Jones" />
-				<strong>Jack Jones</strong>
-					官方网站: <a href="http://www.jackjones.com/" target="_blank">http://www.jackjones.com</a>
+					<img src="../../resources/images/brand/septwolves.gif" alt="QIPILANG" />
+				<strong>QIPILANG</strong>
+					官方网站: <a href="http://www.QIPILANG.com/" target="_blank">http://www.QIPILANG.com</a>
 			</div>
 			<div class="introduction">
 				<div class="title">

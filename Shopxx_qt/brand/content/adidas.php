@@ -10,7 +10,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>NIKE - Powered By SHOP++</title>
+	<title>adidas - Powered By SHOP++</title>
 	<meta name="author" content="SHOP++ Team" />
 	<meta name="copyright" content="SHOP++" />
 		<meta name="keywords" content="Jack Jones" />
@@ -422,19 +422,19 @@ $().ready(function() {
 				</ul>
 			</div>
 			<div class="top">
-					<img src="../../resources/images/brand/jackjones.gif" alt="Jack Jones" />
-				<strong>Jack Jones</strong>
-					官方网站: <a href="http://www.jackjones.com/" target="_blank">http://www.jackjones.com</a>
+					<img src="../../resources/images/brand/adidas.gif" alt="adidas" />
+				<strong>adidas</strong>
+					官方网站: <a href="http://www.adidas.com/" target="_blank">http://www.adidas.com</a>
 			</div>
 			<div class="introduction">
 				<div class="title">
 					<strong>介绍</strong>
 					<span>&nbsp;</span>
 				</div>
-				Jack &amp; Jones是针对年龄在18岁到30岁之间的喜欢穿着随意、流行和时尚的男士们设计的。Jack &amp; Jones的设计迎合了国际大都市男士的生活品位，他们喜欢一种独特、轮廓鲜明而朴实的风格，同时采用高品质、时兴和新颖的面料制作的服装。<br />
-Jack &amp; Jones品牌诞生于1975年，以其简洁纯粹的风格吸引全球追求时尚男性的目光，代表了欧洲时尚潮流的男装品牌，同时也是都市风格服装的典范品牌。<br />
-Jack &amp; Jones是时尚男装里非常流行的品牌，与女装的ONLY、VERO MODA和男装SELECTED同属丹麦的BESTSELLER公司。他们经营各种男装，有休闲，正装等，还有各种配饰。<br />
-杰克琼斯(Jack &amp; Jones) 男装是设计给机敏，明智，受过良好教育，热衷社会活动的都市轻熟男。穿着杰克琼斯(Jack &amp; Jones) 的男人是对现代服装有着自己独特的感受，同时关注国际时装市场趋势的现代人。<br />
+				阿迪达斯这三种标志并不是从品牌初创时期就一直存在的，可以说，阿迪达斯标志的不断演变的历史也是阿迪达斯这一世界知名体育用品有限公司不断前进的一种佐证。<br />
+				阿迪达斯三条纹标志是最早被启用的，在阿迪达斯品牌成立第二年，也就是1949年就开始应用到阿迪达斯旗下的各类商品中了。其代表了不断前进、不断超越的体育精神。。<br />
+				到了1972年，阿迪达斯用三叶草标志逐步代替早期的三条纹标志，以极具象征性的更为美观的三叶草来寓意延展到全世界的体育力量，也同时寄予自身品牌走向世界的愿景。<br />
+				在运用三叶草标志十来年之后，也就是二十世纪八十年代末九十年代初期，阿迪达斯为了与耐克公司竞争，也为了提升本身的运动时尚感，再次将其品牌最早的三条纹重新改造应用到产品中，作为阿迪达斯最为大众所熟知（同时也是价格最为大众化的）运动表现系列（adidas performance）。<br />
 			</div>
 		</div>
 	</div>

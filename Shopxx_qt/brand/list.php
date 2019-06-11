@@ -455,7 +455,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfos.php?bId=<?=$s_brandinfo->bId?>">
+									<a href="content/NIKE.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -473,7 +473,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfoss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/adidas.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -492,7 +492,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfosss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/BeiJiRong.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -511,7 +511,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfossss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/Li-Ning.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -529,7 +529,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfosssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/QiPiLang.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -547,7 +547,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfossssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/SIEMENS.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -565,7 +565,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfosssssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/SNOY.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -585,7 +585,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfossssssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/APPLE.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -603,7 +603,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfosssssssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/Mi.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
@@ -621,7 +621,7 @@ $().ready(function() {
 							?>
 								<ul>
 								<li>
-									<a href="content/brandInfossssssssss.php?bid=<?=$s_brandinfo->bId?>">
+									<a href="content/PRADA.php" =<?=$s_brandinfo->bId?>">
 										<img src="../<?=$s_brandinfo->bLog;?>"/>
 										<span title="bName"><?=$s_brandinfo->bName?></span>
 									</a>
