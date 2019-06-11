@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(dirname(__FILE__)).'\util\DBUtil.php';
+	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
 	header("ConTent-type:text/html;charset=utf-8");
 	session_start();
 	$obj=$_SESSION["name"];
@@ -9,29 +9,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>SHOP++商城 - Powered By SHOP++</title>
+	<title>NIKE - Powered By SHOP++</title>
 	<meta name="author" content="SHOP++ Team" />
 	<meta name="copyright" content="SHOP++" />
-		<meta name="keywords" content="SHOP++商城" />
-		<meta name="description" content="SHOP++商城" />
-<link href="../resources/shop/css/common.css" rel="stylesheet" type="text/css" />
-<link href="../resources/shop/css/product.css" rel="stylesheet" type="text/css" />
-<link href="../resources/shop/css/brand.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../resources/shop/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/shop/js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="../resources/shop/js/common.js"></script>
-<script type="text/javascript">
-$().ready(function() {
-
-	var $logo = $("#list img");
-
-	$logo.lazyload({
-		threshold: 100,
-		effect: "fadeIn"
-	});
-	
-});
-</script>
+		<meta name="keywords" content="Jack Jones" />
+		<meta name="description" content="Jack Jones" />
+<link href="../../resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../resources/shop/css/product.css" rel="stylesheet" type="text/css" />
+<link href="../../resources/shop/css/brand.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../resources/shop/js/jquery.js"></script>
+<script type="text/javascript" src="../../resources/shop/js/common.js"></script>
 </head>
 <body>
 
@@ -86,14 +73,14 @@ $().ready(function() {
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
-			<a href="../demo.shopxx.html">
-				<img src="../upload/image/logo.gif" alt="SHOP++商城" />
+			<a href="../../demo.shopxx.html">
+				<img src="../../upload/image/logo.gif" alt="SHOP++商城" />
 			</a>
 		</div>
 	</div>
 	<div class="span9">
 <div class="headerAd">
-					<img src="../resources/images/ad/header.jpg" width="320" height="50" alt="正品保障" title="正品保障" />
+					<img src="../../resources/images/ad/header.jpg" width="320" height="50" alt="正品保障" title="正品保障" />
 </div>	</div>
 	<div class="span10 last">
 		<div class="topNav clearfix">
@@ -102,30 +89,28 @@ $().ready(function() {
 					<a href="customer_login.php"><?=$obj->cName?></a>
 				</li>
 				<li id="headerRegister" class="headerRegister">
-					<a href="http://demo.shopxx.net/register.jhtml">注册</a>|
+					<a href="#">退出</a>|
 				</li>
 				<li id="headerUsername" class="headerUsername"></li>
 				<li id="headerLogout" class="headerLogout">
-					<a href="http://demo.shopxx.net/logout.jhtml">[退出]</a>|
+					<a href="#">[退出]</a>|
 				</li>
-						<?php
-	                  $DBUtil=new DBUtil();
-	                  $sql="SELECT * from s_navigationinfo  LIMIT 0,3";
-	                  $arr= $DBUtil->query_s_navigationinfo($sql);
-						?>
-						<?php
-									foreach($arr as $s_navigationinfo){
-          				?>
-							<li>
-								<a href="" ><?=$s_navigationinfo->nName;?></a>|
-							</li>
-									<?php	
-          	}
-          	?>
+						<li>
+							<a href="../../admin.html">管理后台</a>
+							|
+						</li>
+						<li>
+							<a href="#">会员中心</a>
+							|
+						</li>
+						<li>
+							<a href="#">关于我们</a>
+							
+						</li>
 			</ul>
 		</div>
 		<div class="cart">
-			<a href="http://demo.shopxx.net/cart/list.jhtml">购物车</a>
+			<a href="#">购物车</a>
 		</div>
 			<div class="phone">
 				客服热线:
@@ -134,42 +119,60 @@ $().ready(function() {
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-					<?php
-	                  $DBUtil=new DBUtil();
-	                  $sql="SELECT * from s_navigationinfo  LIMIT 3,5";
-	                  $arr= $DBUtil->query_s_navigationinfo($sql);
-				?>
-				<?php
-									foreach($arr as $s_navigationinfo){
-          	?>
-							<li>
-								<a href="" ><?=$s_navigationinfo->nName;?></a>|
-							</li>
-									<?php	
-          	}
-          	?>
+					<li>
+						<a href="#">首页</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/1.jhtml">时尚女装</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/2.jhtml">精品男装</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/3.jhtml">精致内衣</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/4.jhtml">服饰配件</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/5.jhtml">时尚女鞋</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/6.jhtml">流行男鞋</a>
+						|
+					</li>
+					<li>
+						<a href="http://demo.shopxx.net/product/list/9.jhtml">童装童鞋</a>
+						
+					</li>
 		</ul>
 	</div>
 	<div class="span24">
 		<div class="tagWrap">
 			<ul class="tag">
 						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/hot.gif) right no-repeat;">
-							<a href="../product/list.jhtml~tagIds=1.html">热销</a>
+							<a href="../../product/list.jhtml~tagIds=1.html">热销</a>
 						</li>
 						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/new.gif) right no-repeat;">
-							<a href="../product/list.jhtml~tagIds=2.html">最新</a>
+							<a href="../../product/list.jhtml~tagIds=2.html">最新</a>
 						</li>
 			</ul>
 			<div class="hotSearch">
 					热门搜索:
 						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=T%E6%81%A4">T恤</a>
-						<a href="../product/search.jhtml~keyword=衬衫.html">衬衫</a>
-						<a href="../product/search.jhtml~keyword=西服.html">西服</a>
-						<a href="../product/search.jhtml~keyword=西裤.html">西裤</a>
-						<a href="../product/search.jhtml~keyword=森马.html">森马</a>
+						<a href="../../product/search.jhtml~keyword=衬衫.html">衬衫</a>
+						<a href="../../product/search.jhtml~keyword=西服.html">西服</a>
+						<a href="../../product/search.jhtml~keyword=西裤.html">西裤</a>
+						<a href="../../product/search.jhtml~keyword=森马.html">森马</a>
 						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E4%B8%83%E5%8C%B9%E7%8B%BC">七匹狼</a>
 						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E6%A2%B5%E5%B8%8C%E8%94%93">梵希蔓</a>
-						<a href="../product/search.jhtml~keyword=春夏新款.html">春夏新款</a>
+						<a href="../../product/search.jhtml~keyword=春夏新款.html">春夏新款</a>
 						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E7%89%9B%E4%BB%94%E8%A3%A4">牛仔裤</a>
 			</div>
 			<div class="search">
@@ -180,7 +183,7 @@ $().ready(function() {
 			</div>
 		</div>
 	</div>
-</div>	<div class="container brandList">
+</div>	<div class="container brandContent">
 		<div class="span6">
 			<div class="hotProductCategory">
 						<dl>
@@ -358,37 +361,12 @@ $().ready(function() {
 				<div class="title">热销商品</div>
 				<ul>
 							<li>
-								<a href="../product/content/201306/279.html" title="尚都比拉2013春夏装新款女装 春款修身女裙 蕾丝雪纺短袖连衣裙子">尚都比拉2013春夏装新款女装 春款</a>
-									<div>
-										<div>评分: </div>
-										<div class="score8"></div>
-										<div>4.0</div>
-									</div>
-								<div>销售价: <strong>￥266.00元</strong></div>
-								<div>月销量: <em>0</em></div>
-							</li>
-							<li>
-								<a href="../product/content/201306/300.html" title="尚都比拉女装2013夏装新款蕾丝连衣裙 韩版修身雪纺打底裙子 春款">尚都比拉女装2013夏装新款蕾丝连</a>
+								<a href="../../product/content/201306/300.html" title="尚都比拉女装2013夏装新款蕾丝连衣裙 韩版修身雪纺打底裙子 春款">尚都比拉女装2013夏装新款蕾丝连</a>
 								<div>销售价: <strong>￥298.00元</strong></div>
 								<div>月销量: <em>0</em></div>
 							</li>
 							<li>
-								<a href="../product/content/201306/122.html" title="OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254">OSA春装外套女春秋韩版泡泡袖女士</a>
-									<div>
-										<div>评分: </div>
-										<div class="score8"></div>
-										<div>4.0</div>
-									</div>
-								<div>销售价: <strong>￥288.00元</strong></div>
-								<div>月销量: <em>0</em></div>
-							</li>
-							<li>
-								<a href="../product/content/201306/241.html" title="婷美正品 四季款魔鬼瘦塑身衣套装瘦腰翘臀B罩杯">婷美正品 四季款魔鬼瘦塑身衣套装</a>
-								<div>销售价: <strong>￥328.00元</strong></div>
-								<div>月销量: <em>0</em></div>
-							</li>
-							<li>
-								<a href="../product/content/201306/109.html" title="2013春夏柒牌男装正品西服 男立领修身韩版 西服套装 902C141200">2013春夏柒牌男装正品西服 男立领</a>
+								<a href="../../product/content/201306/109.html" title="2013春夏柒牌男装正品西服 男立领修身韩版 西服套装 902C141200">2013春夏柒牌男装正品西服 男立领</a>
 									<div>
 										<div>评分: </div>
 										<div class="score8"></div>
@@ -398,12 +376,12 @@ $().ready(function() {
 								<div>月销量: <em>0</em></div>
 							</li>
 							<li>
-								<a href="../product/content/201306/242.html" title="婷美正品秋冬保暖衣 轻压塑身衣美体衣保暖内衣 塑身内衣分体套装">婷美正品秋冬保暖衣 轻压塑身衣美</a>
+								<a href="../../product/content/201306/242.html" title="婷美正品秋冬保暖衣 轻压塑身衣美体衣保暖内衣 塑身内衣分体套装">婷美正品秋冬保暖衣 轻压塑身衣美</a>
 								<div>销售价: <strong>￥658.00元</strong></div>
 								<div>月销量: <em>0</em></div>
 							</li>
 							<li>
-								<a href="../product/content/201306/298.html" title="尚都比拉2013夏装新款淑女装 春款森女系 碎花修身短袖蕾丝连衣裙">尚都比拉2013夏装新款淑女装 春款</a>
+								<a href="../../product/content/201306/298.html" title="尚都比拉2013夏装新款淑女装 春款森女系 碎花修身短袖蕾丝连衣裙">尚都比拉2013夏装新款淑女装 春款</a>
 									<div>
 										<div>评分: </div>
 										<div class="score8"></div>
@@ -413,23 +391,18 @@ $().ready(function() {
 								<div>月销量: <em>0</em></div>
 							</li>
 							<li>
-								<a href="../product/content/201306/96.html" title="梵希蔓2013新款夏装甜美女装连衣裙短袖雪纺蕾丝拼接公主裙百褶裙">梵希蔓2013新款夏装甜美女装连衣</a>
-								<div>销售价: <strong>￥268.00元</strong></div>
-								<div>月销量: <em>0</em></div>
-							</li>
-							<li>
-								<a href="../product/content/201306/246.html" title="维依恋2013夏装新款波西米亚印花雪纺半身裙抹胸连衣裙两穿长裙子">维依恋2013夏装新款波西米亚印花</a>
+								<a href="../../product/content/201306/122.html" title="OSA春装外套女春秋韩版泡泡袖女士小西装短外套W13254">OSA春装外套女春秋韩版泡泡袖女士</a>
 									<div>
 										<div>评分: </div>
-										<div class="score10"></div>
-										<div>5.0</div>
+										<div class="score8"></div>
+										<div>4.0</div>
 									</div>
-								<div>销售价: <strong>￥199.00元</strong></div>
+								<div>销售价: <strong>￥288.00元</strong></div>
 								<div>月销量: <em>0</em></div>
 							</li>
 							<li class="last">
-								<a href="../product/content/201306/221.html" title="2013新款夏季家居服女 大码全棉夏装家居睡衣 运动短袖短裤套装">2013新款夏季家居服女 大码全棉夏</a>
-								<div>销售价: <strong>￥121.00元</strong></div>
+								<a href="../../product/content/201306/96.html" title="梵希蔓2013新款夏装甜美女装连衣裙短袖雪纺蕾丝拼接公主裙百褶裙">梵希蔓2013新款夏装甜美女装连衣</a>
+								<div>销售价: <strong>￥268.00元</strong></div>
 								<div>月销量: <em>0</em></div>
 							</li>
 				</ul>
@@ -439,203 +412,38 @@ $().ready(function() {
 			<div class="path">
 				<ul>
 					<li>
-						<a href="../demo.shopxx.html">首页</a>
+						<a href="../../demo.shopxx.html">首页</a>
 					</li>
-					<li class="last">品牌</li>
+					<li>
+						<a href="http://demo.shopxx.net/brand/list/1.jhtml">品牌</a>
+					</li>
 				</ul>
 			</div>
-			<div id="list" class="list clearfix">
-					<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=11";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfos.php?bId=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-				<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=12";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfoss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-													
-						<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=13";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfosss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>	
-									
-									<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=19";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfossss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>	
-				<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=20";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfosssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-				<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=24";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfossssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-									<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=25";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfosssssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-									
-									
-						<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=26";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfossssssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>	
-									<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=27";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfosssssssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>
-					<?php
-	            $DBUtil=new DBUtil();
-	           $sql="select * from s_brandinfo where bId=28";
-	           $arr= $DBUtil->query_brandinfo($sql);
-	?>
-						<?php
-							foreach($arr as $s_brandinfo){
-							?>
-								<ul>
-								<li>
-									<a href="content/brandInfossssssssss.php?bid=<?=$s_brandinfo->bId?>">
-										<img src="../<?=$s_brandinfo->bLog;?>"/>
-										<span title="bName"><?=$s_brandinfo->bName?></span>
-									</a>
-								</li>
-								<?php
-							}
-									?>	
+			<div class="top">
+					<img src="../../resources/images/brand/nike.gif" alt="NIKE" />
+				<strong>NIKE</strong>
+					官方网站: <a href="http://www.nike.com" target="_blank">http://www.nike.com</a>
+			</div>
+			<div class="introduction">
+				<div class="title">
+					<strong>介绍</strong>
+					<span>&nbsp;</span>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80年代，耐克产品开始从田径场和体育馆进入寻常百姓家(特别是十几岁的少年)。耐克公司必须在不失去正规体育传统市场情况下，尽力扩大耐克广告的吸引力，为此耐克必须像Levi's品牌(牛仔服的领导品牌 牛仔裤的发明者李维·施特劳斯建立)一样，成为青年文化的组成部分和身份象征。耐克公司在两个完全不同的市场作战，<br />
+				它面临的难题是在适应流行意识和宣传体育成就上如何获得平衡与一致，耐克公司开始重新思考其广告策略了。<br />
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1986年的一则宣传耐克充气鞋垫的广告是真正的突破，在广告片中耐克公司采用一个崭新的创意，不是采用一味宣传产品技术性能和优势的惯常手法，而是由代表和象征嬉皮士的著名甲壳虫乐队演奏的著名歌曲《革命》，在反叛图新的节奏、旋律中，一群穿戴耐克产品的美国人正如痴如醉地进行健身锻炼，……这则广告准确地迎合了刚刚出现的健身运动的变革之风和时代新潮，让感觉耳目一新。<br />
+				<br />
+				耐克公司原先一直采用杂志作为主要广告媒体，向竞技选手们传递产品的信息，但自此以后，电视广告成为耐克的主要“发言人”，这一举措使得耐克广告更能适应其产品市场的新发展。<br />
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;耐克公司拓展市场的首要突破口是青少年市场，这一市场上的消费者有一些共同的特征：热爱运动、崇敬英雄人物，追星意识强烈，希望受人重视，思维活跃，想象力丰富并充满梦想。针对青少年消费者的这一特征，耐克相继与一些大名鼎鼎、受人喜爱的体育明星签约，如c罗、德罗巴、小罗、托雷斯、法布雷加斯、伊布、罗比尼奥、阿圭罗等。并拍摄了许多想象力十足的广告，如2010年南非世界杯的宣传片《踢出传奇》就在5月22日欧冠决赛时首播。<br />
 			</div>
 		</div>
 	</div>
 <div class="container footer">
 	<div class="span24">
 		<div class="footerAd">
-					<img src="../../storage.shopxx.net/demo-image/3.0/ad/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势" />
+					<img src="../../../storage.shopxx.net/demo-image/3.0/ad/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势" />
 </div>	</div>
 	<div class="span24">
 		<ul class="bottomNav">

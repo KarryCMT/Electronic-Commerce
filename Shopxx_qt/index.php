@@ -243,15 +243,15 @@ $().ready(function() {
 			</ul>
 			<div class="hotSearch">
 					热门搜索:
-						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=T%E6%81%A4">T恤</a>
-						<a href="product/search.jhtml~keyword=衬衫.html">衬衫</a>
-						<a href="product/search.jhtml~keyword=西服.html">西服</a>
-						<a href="product/search.jhtml~keyword=西裤.html">西裤</a>
-						<a href="product/search.jhtml~keyword=森马.html">森马</a>
-						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E4%B8%83%E5%8C%B9%E7%8B%BC">七匹狼</a>
-						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E6%A2%B5%E5%B8%8C%E8%94%93">梵希蔓</a>
-						<a href="product/search.jhtml~keyword=春夏新款.html">春夏新款</a>
-						<a href="http://demo.shopxx.net/product/search.jhtml?keyword=%E7%89%9B%E4%BB%94%E8%A3%A4">牛仔裤</a>
+						<a href="#">T恤</a>
+						<a href="#">衬衫</a>
+						<a href="#">西服</a>
+						<a href="#">西裤</a>
+						<a href="#">森马</a>
+						<a href="#">七匹狼</a>
+						<a href="#">梵希蔓</a>
+						<a href="#">春夏新款</a>
+						<a href="#">牛仔裤</a>
 			</div>
 			<div class="search">
 				<form id="productSearchForm" action="/product/search.jhtml" method="get">
@@ -570,7 +570,7 @@ $().ready(function() {
 					                    }
 					                         ?>
 									<li>
-										<a href="product\content\carproductinfo.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
+										<a href="./brand/list.php" ><img  src="<?=$arr[$i]->pPhoto;?>" title="<?=$arr[$i]->remark;?>"/></a>
 									</li>
 									<li>
 										<a href="product\content\carproductinfos.php" ><img   src="<?=$arr[$i+1]->pPhoto;?>" title="<?=$arr[$i+1]->remark;?>"/></a>
