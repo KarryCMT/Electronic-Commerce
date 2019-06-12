@@ -965,11 +965,11 @@ class DBUtil{
 			return $flag;
 		}
 		
-		 function query_add_s_addcustomer($addcustomer);{
-		 	$Aid=$addcustomer->Aid;
-			$cid=$addcustomer->cid;
-			$AddCustomer=$addcustomer->AddCustomer;
-			$isDef=$addcustomer->isDef;
+		 function query_s_addcustomer($s_addcustomer){
+		 	$Aid=$s_addcustomer->Aid;
+			$cid=$s_addcustomer->cid;
+			$AddCustomer=$s_addcustomer->AddCustomer;
+			$isDef=$s_addcustomer->isDef;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -978,11 +978,11 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-		 function query_add_s_areainfo($areainfo);{
-		 	$aId=$areainfo->aId;
-			$aName=$areainfo->aName;
-			$parentId=$areainfo->parentId;
-			$remark=$areainfo->remark;
+		 function query_s_areainfo($s_areainfo){
+		 	$aId=$s_areainfo->aId;
+			$aName=$s_areainfo->aName;
+			$parentId=$s_areainfo->parentId;
+			$remark=$s_areainfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -991,48 +991,48 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-		 function query_s_areainfo($areainfo);{
-		 	$ArId=$areainfo->ArId;
-			$ArTitle=$areainfo->ArTitle;
-			$ArContent=$areainfo->ArContent;
-			$AtId=$areainfo->AtId;
-			$AtAuthor=$areainfo->AtAuthor;
-			$States=$areainfo->States;
-			$isTop=$areainfo->isTop;
-			$ArMark=$areainfo->ArMark;
-			$CrTime=$areainfo->CrTime;
-			
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_areainfo(ArId,ArTitle,ArContent,AtId,AtAuthor,States,isTop,ArMark,CrTime) VALUE(?,?,?,?,?,?,?,?,?)';
-			$stm->bind_param('issisiiis',$ArId,$ArTitle,$ArContent,$AtId,$AtAuthor,$States,$isTop,$ArMark,$CrTime);
-			$flag=$stm->execute();
-			return $flag;
-		 }
-		 function query_add_s_articletype($articletype);{
-		 	$AtId=$articletype->AtId;
-			$ArName=$articletype->ArName;
-			$AtTitle=$articletype->AtTitle;
-			$AtImp=$articletype->AtImp;
-			$AtRemark=$articletype->AtRemark;
-			$Atorder=$articletype->Atorder;
-			
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_articletype(AtId,ArName,AtTitle,AtImp,AtRemark,Atorder) VALUE(?,?,?,?,?,?)';
-			$stm->bind_param('issssi',$AtId,$ArName,$AtTitle,$AtImp,$AtRemark,$Atorder);
-			$flag=$stm->execute();
-			return $flag;
-		 }
+//		 function query_s_areainfo($s_areainfo){
+//		 	$ArId=$s_areainfo->ArId;
+//			$ArTitle=$s_areainfo->ArTitle;
+//			$ArContent=$s_areainfo->ArContent;
+//			$AtId=$s_areainfo->AtId;
+//			$AtAuthor=$s_areainfo->AtAuthor;
+//			$States=$s_areainfo->States;
+//			$isTop=$s_areainfo->isTop;
+//			$ArMark=$s_areainfo->ArMark;
+//			$CrTime=$s_areainfo->CrTime;
+//			
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_areainfo(ArId,ArTitle,ArContent,AtId,AtAuthor,States,isTop,ArMark,CrTime) VALUE(?,?,?,?,?,?,?,?,?)';
+//			$stm->bind_param('issisiiis',$ArId,$ArTitle,$ArContent,$AtId,$AtAuthor,$States,$isTop,$ArMark,$CrTime);
+//			$flag=$stm->execute();
+//			return $flag;
+//		 }
+//		 function query_s_articletype($s_articletype){
+//		 	$AtId=$s_articletype->AtId;
+//			$ArName=$s_articletype->ArName;
+//			$AtTitle=$s_articletype->AtTitle;
+//			$AtImp=$s_articletype->AtImp;
+//			$AtRemark=$s_articletype->AtRemark;
+//			$Atorder=$s_articletype->Atorder;
+//			
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_articletype(AtId,ArName,AtTitle,AtImp,AtRemark,Atorder) VALUE(?,?,?,?,?,?)';
+//			$stm->bind_param('issssi',$AtId,$ArName,$AtTitle,$AtImp,$AtRemark,$Atorder);
+//			$flag=$stm->execute();
+//			return $flag;
+//		 }
 		 
-		 function query_s_brandinfo($brandinfo);{
-		 	$bId=$brandinfo->bId;
-			$ptId=$brandinfo->ptId;
-			$bName=$brandinfo->bName;
-			$bLog=$brandinfo->bLog;
-			$bIntroduce=$brandinfo->bIntroduce;
-			$bUrl=$brandinfo->bUrl;
-			$remark=$brandinfo->remark;
+		 function query_s_brandinfo($s_brandinfo){
+		 	$bId=$s_brandinfo->bId;
+			$ptId=$s_brandinfo->ptId;
+			$bName=$s_brandinfo->bName;
+			$bLog=$s_brandinfo->bLog;
+			$bIntroduce=$s_brandinfo->bIntroduce;
+			$bUrl=$s_brandinfo->bUrl;
+			$remark=$s_brandinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1041,13 +1041,13 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-		  function query_add_s_cancelinfo($cancelinfo);{
-		 	$cId=$cancelinfo->cId;
-			$oId=$cancelinfo->oId;
-			$cState=$cancelinfo->cState;
-			$cMemo=$cancelinfo->cMemo;
-			$createTime=$cancelinfo->createTime;
-			$remark=$cancelinfo->remark;
+		  function query_s_cancelinfo($s_cancelinfo){
+		 	$cId=$s_cancelinfo->cId;
+			$oId=$s_cancelinfo->oId;
+			$cState=$s_cancelinfo->cState;
+			$cMemo=$s_cancelinfo->cMemo;
+			$createTime=$s_cancelinfo->createTime;
+			$remark=$s_cancelinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1057,14 +1057,14 @@ class DBUtil{
 			return $flag;
 		 }
 		  
-		  function query_add_s_customergradeinfo($customergradeinfo);{
-		 	$cgId=$customergradeinfo->cgId;
-			$cgName=$customergradeinfo->cgName;
-			$cgIntroduce=$customergradeinfo->cgIntroduce;
-			$remark=$customergradeinfo->remark;
-			$ShoMoney=$customergradeinfo->ShoMoney;
-			$OffNum=$customergradeinfo->OffNum;
-			$isDef=$customergradeinfo->isDef;
+		  function query_s_customergradeinfo($s_customergradeinfo){
+		 	$cgId=$s_customergradeinfo->cgId;
+			$cgName=$s_customergradeinfo->cgName;
+			$cgIntroduce=$s_customergradeinfo->cgIntroduce;
+			$remark=$s_customergradeinfo->remark;
+			$ShoMoney=$s_customergradeinfo->ShoMoney;
+			$OffNum=$s_customergradeinfo->OffNum;
+			$isDef=$s_customergradeinfo->isDef;
 			
 			
 			$DBUtil=new DBUtil();
@@ -1074,22 +1074,22 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-		    function query_add_s_customerinfo($s_customerinfo);{
-		 	$cId=$customergradeinfo->cId;
-			$cgId=$customergradeinfo->cgId;
-			$cName=$customergradeinfo->cName;
-			$cPwd=$customergradeinfo->cPwd;
-			$cEmail=$customergradeinfo->cEmail;
-			$cSex=$customergradeinfo->cSex;
-			$cBirth=$customergradeinfo->cBirth;
-			$aId=$customergradeinfo->aId;
-			$createTime=$customergradeinfo->createTime;
-			$remark=$customergradeinfo->remark;
-			$cState=$customergradeinfo->cState;
-			$trueName=$customergradeinfo->trueName;
-			$cellPhone=$customergradeinfo->cellPhone;
-			$tellPhone=$customergradeinfo->tellPhone;
-			$nickName=$customergradeinfo->nickName;
+		    function query_s_customerinfo($s_customerinfo){
+		 	$cId=$s_customerinfo->cId;
+			$cgId=$s_customerinfo->cgId;
+			$cName=$s_customerinfo->cName;
+			$cPwd=$s_customerinfo->cPwd;
+			$cEmail=$s_customerinfo->cEmail;
+			$cSex=$s_customerinfo->cSex;
+			$cBirth=$s_customerinfo->cBirth;
+			$aId=$s_customerinfo->aId;
+			$createTime=$s_customerinfo->createTime;
+			$remark=$s_customerinfo->remark;
+			$cState=$s_customerinfo->cState;
+			$trueName=$s_customerinfo->trueName;
+			$cellPhone=$s_customerinfo->cellPhone;
+			$tellPhone=$s_customerinfo->tellPhone;
+			$nickName=$s_customerinfo->nickName;
 			
 			
 			
@@ -1101,31 +1101,31 @@ class DBUtil{
 			return $flag;
 		 }
 		
-		  function query_add_s_customergradeinfo($customergradeinfo);{
-		 	$etId=$customergradeinfo->etId;
-			$etName=$customergradeinfo->cgName;
-			$fWeight=$customergradeinfo->fWeight;
-			$fPrice=$customergradeinfo->fPrice;
-			$cWeight=$customergradeinfo->cWeight;
-			$cPrice=$customergradeinfo->cPrice;
-			$etIntroduce=$customergradeinfo->etIntroduce;
-			$remark=$customergradeinfo->remark;
-			
-			
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_customergradeinfo(etId,etName,fWeight,fPrice,cWeight,cPrice,etIntroduce,remark) VALUE(?,?,?,?,?,?,?,?)';
-			$stm->bind_param('isssssss',$etId,$etName,$fWeight,$fPrice,$cWeight,$cPrice,$etIntroduce,$remark);
-			$flag=$stm->execute();
-			return $flag;
-		 }
-		  function query_add_s_friendshipinfo($friendshipinfo);{
-		 	$fr_Id=$customergradeinfo->fr_Id;
-			$fr_Name=$customergradeinfo->fr_Name;
-			$fr_logo=$customergradeinfo->fr_logo;
-			$fr_url=$customergradeinfo->fr_url;
-			$fr_order=$customergradeinfo->fr_order;
-			$fr_createDate=$customergradeinfo->fr_createDate;
+//		  function query_s_customergradeinfo($s_customergradeinfo){
+//		 	$etId=$s_customergradeinfo->etId;
+//			$etName=$s_customergradeinfo->cgName;
+//			$fWeight=$s_customergradeinfo->fWeight;
+//			$fPrice=$s_customergradeinfo->fPrice;
+//			$cWeight=$s_customergradeinfo->cWeight;
+//			$cPrice=$s_customergradeinfo->cPrice;
+//			$etIntroduce=$s_customergradeinfo->etIntroduce;
+//			$remark=$s_customergradeinfo->remark;
+//			
+//			
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_customergradeinfo(etId,etName,fWeight,fPrice,cWeight,cPrice,etIntroduce,remark) VALUE(?,?,?,?,?,?,?,?)';
+//			$stm->bind_param('isssssss',$etId,$etName,$fWeight,$fPrice,$cWeight,$cPrice,$etIntroduce,$remark);
+//			$flag=$stm->execute();
+//			return $flag;
+//		 }
+		  function query_s_friendshipinfo($s_friendshipinfo){
+		 	$fr_Id=$s_friendshipinfo->fr_Id;
+			$fr_Name=$s_friendshipinfo->fr_Name;
+			$fr_logo=$s_friendshipinfo->fr_logo;
+			$fr_url=$s_friendshipinfo->fr_url;
+			$fr_order=$s_friendshipinfo->fr_order;
+			$fr_createDate=$s_friendshipinfo->fr_createDate;
 			
 			
 			$DBUtil=new DBUtil();
@@ -1137,14 +1137,14 @@ class DBUtil{
 			
 			
 		 }
-		  function query_add_s_gatheringinfo($gatheringinfo);{
-		 	$gId=$gatheringinfo->gId;
-			$cId=$gatheringinfo->cId;
-			$oId=$gatheringinfo->oId;
-			$gMoney=$gatheringinfo->gMoney;
-			$memo=$gatheringinfo->memo;
-			$createTime=$gatheringinfo->createTime;
-			$remark=$gatheringinfo->remark;
+		  function query_s_gatheringinfo($s_gatheringinfo){
+		 	$gId=$s_gatheringinfo->gId;
+			$cId=$s_gatheringinfo->cId;
+			$oId=$s_gatheringinfo->oId;
+			$gMoney=$s_gatheringinfo->gMoney;
+			$memo=$s_gatheringinfo->memo;
+			$createTime=$s_gatheringinfo->createTime;
+			$remark=$s_gatheringinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1156,31 +1156,31 @@ class DBUtil{
 			
 		 }
 		  
-		  function query_add_s_navigationinfo($navigationinfo);{
-		 	$nId=$navigationinfo->nId;
-			$nUrl=$navigationinfo->nUrl;
-			$nName=$navigationinfo->nName;
-			$nPosition=$navigationinfo->nPosition;
-			$nIsNew=$navigationinfo->nIsNew;
-			$orders=$navigationinfo->orders;
-				
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_navigationinfo(nId,nUrl,nName,nPosition,nIsNew,orders) VALUE(?,?,?,?,?,?)';
-			$stm->bind_param('issiii',$nId,$nUrl,$nName,$nPosition,$nIsNew,$orders);
-			$flag=$stm->execute();
-			return $flag;
-			
-			
-		 }
+//		  function query_s_navigationinfo($s_navigationinfo){
+//		 	$nId=$s_navigationinfo->nId;
+//			$nUrl=$s_navigationinfo->nUrl;
+//			$nName=$s_navigationinfo->nName;
+//			$nPosition=$s_navigationinfo->nPosition;
+//			$nIsNew=$s_navigationinfo->nIsNew;
+//			$orders=$s_navigationinfo->orders;
+//				
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_navigationinfo(nId,nUrl,nName,nPosition,nIsNew,orders) VALUE(?,?,?,?,?,?)';
+//			$stm->bind_param('issiii',$nId,$nUrl,$nName,$nPosition,$nIsNew,$orders);
+//			$flag=$stm->execute();
+//			return $flag;
+//			
+//			
+//		 }
 		  
-		    function query_add_s_noticeinfo($noticeinfo);{
-		 	$nId=$noticeinfo->gId;
-			$uId=$noticeinfo->cId;
-			$nTitle=$noticeinfo->oId;
-			$nContent=$noticeinfo->gMoney;
-			$createTime=$noticeinfo->createTime;
-			$remark=$noticeinfo->remark;
+		    function query_s_noticeinfo($s_noticeinfo){
+		 	$nId=$s_noticeinfo->gId;
+			$uId=$s_noticeinfo->cId;
+			$nTitle=$s_noticeinfo->oId;
+			$nContent=$s_noticeinfo->gMoney;
+			$createTime=$s_noticeinfo->createTime;
+			$remark=$s_noticeinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1191,21 +1191,21 @@ class DBUtil{
 			
 			
 		 }
-			function query_add_s_orderinfo($orderinfo);{
-		 	$oId=$orderinfo->oId;
-			$etId=$orderinfo->etId;
-			$aId=$orderinfo->aId;
-			$cId=$orderinfo->cId;
-			$ptId=$orderinfo->ptId;
-			$pId=$orderinfo->pId;
-			$eFee=$orderinfo->eFee;
-			$paFee=$orderinfo->paFee;
-			$totalAmount=$orderinfo->total;
-			$pSum=$orderinfo->pSum;
-			$msg=$orderinfo->msg;
-			$oState=$orderinfo->oState;
-			$createTime=$orderinfo->createTime;
-			$remark=$orderinfo->remark;
+			function query_s_orderinfo($s_orderinfo){
+		 	$oId=$s_orderinfo->oId;
+			$etId=$s_orderinfo->etId;
+			$aId=$s_orderinfo->aId;
+			$cId=$s_orderinfo->cId;
+			$ptId=$s_orderinfo->ptId;
+			$pId=$s_orderinfo->pId;
+			$eFee=$s_orderinfo->eFee;
+			$paFee=$s_orderinfo->paFee;
+			$totalAmount=$s_orderinfo->total;
+			$pSum=$s_orderinfo->pSum;
+			$msg=$s_orderinfo->msg;
+			$oState=$s_orderinfo->oState;
+			$createTime=$s_orderinfo->createTime;
+			$remark=$s_orderinfo->remark;
 			
 		
 			
@@ -1218,13 +1218,13 @@ class DBUtil{
 			
 			
 		 }
-		    function query_add_s_paytypeinfo($paytypeinfo);{
-		 	$ptId=$paytypeinfo->ptId;
-			$ptName=$paytypeinfo->ptName;
-			$ptType=$paytypeinfo->ptType;
-			$ptLog=$paytypeinfo->ptLog;
-			$ptIntroduce=$paytypeinfo->ptIntroduce;
-			$remark=$paytypeinfo->remark;
+		    function query_s_paytypeinfo($s_paytypeinfo){
+		 	$ptId=$s_paytypeinfo->ptId;
+			$ptName=$s_paytypeinfo->ptName;
+			$ptType=$s_paytypeinfo->ptType;
+			$ptLog=$s_paytypeinfo->ptLog;
+			$ptIntroduce=$s_paytypeinfo->ptIntroduce;
+			$remark=$s_paytypeinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1235,9 +1235,9 @@ class DBUtil{
 			
 			
 		 }
-		    function query_add_s_position($position);{
-		 	$pid=$position->pid;
-			$pName=$position->pName;
+		    function query_s_position($s_position){
+		 	$pid=$s_position->pid;
+			$pName=$s_position->pName;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1250,12 +1250,12 @@ class DBUtil{
 			
 		 }
 		   
-		   function query_add_s_proattvalue($proattvalue);{
-		 	$PAId=$proattvalue->PAId;
-			$proId=$proattvalue->proId;
-			$AttValue=$proattvalue->AttValue;
-			$ProRemark=$proattvalue->ProRemark;
-			$attId=$proattvalue->attId;
+		   function query_s_proattvalue($s_proattvalue){
+		 	$PAId=$s_proattvalue->PAId;
+			$proId=$s_proattvalue->proId;
+			$AttValue=$s_proattvalue->AttValue;
+			$ProRemark=$s_proattvalue->ProRemark;
+			$attId=$s_proattvalue->attId;
 			
 			
 			$DBUtil=new DBUtil();
@@ -1268,14 +1268,14 @@ class DBUtil{
 			
 			
 		 }
-		    function query_add_s_productevaluationinfo($productevaluationinfo);{
-		 	$peId=$productevaluationinfo->peId;
-			$pId=$productevaluationinfo->pId;
-			$cId=$productevaluationinfo->cId;
-			$peContent=$productevaluationinfo->peContent;
-			$peState=$productevaluationinfo->peState;
-			$createTime=$productevaluationinfo->createTime;
-			$remark=$productevaluationinfo->remark;
+		    function query_s_productevaluationinfo($s_productevaluationinfo){
+		 	$peId=$s_productevaluationinfo->peId;
+			$pId=$s_productevaluationinfo->pId;
+			$cId=$s_productevaluationinfo->cId;
+			$peContent=$s_productevaluationinfo->peContent;
+			$peState=$s_productevaluationinfo->peState;
+			$createTime=$s_productevaluationinfo->createTime;
+			$remark=$s_productevaluationinfo->remark;
 			
 			
 			$DBUtil=new DBUtil();
@@ -1285,12 +1285,12 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-			function query_add_s_productimglist($productimglist);{
-		 	$ImgId=$productimglist->ImgId;
-		    $ImgUrl=$productimglist->ImgUrl;
-			$ProId=$productimglist->ProId;
-			$ImgOrder=$productimglist->ImgOrder;
-			$ImgTitle=$productimglist->ImgTitle; 
+			function query_s_productimglist($s_productimglist){
+		 	$ImgId=$s_productimglist->ImgId;
+		    $ImgUrl=$s_productimglist->ImgUrl;
+			$ProId=$s_productimglist->ProId;
+			$ImgOrder=$s_productimglist->ImgOrder;
+			$ImgTitle=$s_productimglist->ImgTitle; 
 			
 			
 			$DBUtil=new DBUtil();
@@ -1300,44 +1300,44 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 } 
-			function query_add_s_productinfo($productinfo);{
-		 	$pId=$productinfo->pId;
-			$ptId=$productinfo->ptId;
-			$bId=$productinfo->bId;
-			$psId=$productinfo->psId;
-			$pName=$productinfo->pName;
-			$pPrice=$productinfo->pPrice;
-			$pAddr=$productinfo->pAddr;
-			$pPhoto=$productinfo->pPhoto;
-			$pIntroduce=$productinfo->pIntroduce;
-			$pWeight=$productinfo->pWeight;
-			$pCount=$productinfo->pCount;
-			$pState=$productinfo->pState;
-			$isHot=$productinfo->isHot;
-			$isNew=$productinfo->isNew;
-			$remark=$productinfo->remark;
-			$createDate=$productinfo->createDate;
-			$costPrice=$productinfo->costPrice;
-			$marketPrice=$productinfo->marketPrice;
-			$VIPPrice=$productinfo->VIPPrice;
-			$pScore=$productinfo->pScore;
-			
-			
-			
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_productinfo(pId,ptId,bId,psId,pName,pPrice,pAddr,pPhoto,pIntroduce,pWeight,pCount,pState,isHot,isNew,remark,createDate,costPrice,marketPrice,VIPPrice,pScore) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-			$stm->bind_param('iiiisissssiiiisssssi',$pId,$ptId,$bId,$psId,$pName,$pPrice,$pAddr,$pPhoto,$pIntroduce,$pWeight,$pCount,$pState,$isHot,$isNew,$remark,$createDate,$costPrice,$marketPrice,$VIPPrice,$pScore);
-			$flag=$stm->execute();
-			return $flag;
-		 }  
-		    function query_add_s_productspecinfo($productspecinfo);{
-		 	$psId=$productspecinfo->psId;
-			$psName=$productspecinfo->psName;
-			$order=$productspecinfo->order;
-			$psVal=$productspecinfo->psVal;
-			$remark=$productspecinfo->remark;
-			$ptid=$productspecinfo->ptid;
+//			function query_s_productinfo($s_productinfo){
+//		 	$pId=$s_productinfo->pId;
+//			$ptId=$s_productinfo->ptId;
+//			$bId=$s_productinfo->bId;
+//			$psId=$s_productinfo->psId;
+//			$pName=$s_productinfo->pName;
+//			$pPrice=$s_productinfo->pPrice;
+//			$pAddr=$s_productinfo->pAddr;
+//			$pPhoto=$s_productinfo->pPhoto;
+//			$pIntroduce=$s_productinfo->pIntroduce;
+//			$pWeight=$s_productinfo->pWeight;
+//			$pCount=$s_productinfo->pCount;
+//			$pState=$s_productinfo->pState;
+//			$isHot=$s_productinfo->isHot;
+//			$isNew=$s_productinfo->isNew;
+//			$remark=$s_productinfo->remark;
+//			$createDate=$s_productinfo->createDate;
+//			$costPrice=$s_productinfo->costPrice;
+//			$marketPrice=$s_productinfo->marketPrice;
+//			$VIPPrice=$s_productinfo->VIPPrice;
+//			$pScore=$s_productinfo->pScore;
+//			
+//			
+//			
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_productinfo(pId,ptId,bId,psId,pName,pPrice,pAddr,pPhoto,pIntroduce,pWeight,pCount,pState,isHot,isNew,remark,createDate,costPrice,marketPrice,VIPPrice,pScore) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+//			$stm->bind_param('iiiisissssiiiisssssi',$pId,$ptId,$bId,$psId,$pName,$pPrice,$pAddr,$pPhoto,$pIntroduce,$pWeight,$pCount,$pState,$isHot,$isNew,$remark,$createDate,$costPrice,$marketPrice,$VIPPrice,$pScore);
+//			$flag=$stm->execute();
+//			return $flag;
+//		 }  
+		    function query_s_productspecinfo($s_productspecinfo){
+		 	$psId=$s_productspecinfo->psId;
+			$psName=$s_productspecinfo->psName;
+			$order=$s_productspecinfo->order;
+			$psVal=$s_productspecinfo->psVal;
+			$remark=$s_productspecinfo->remark;
+			$ptid=$s_productspecinfo->ptid;
 			
 			
 			$DBUtil=new DBUtil();
@@ -1347,11 +1347,11 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-			function query_add_s_producttypeinfo($producttypeinfo);{
-		 	$ptId=$producttypeinfo->ptId;
-			$ptName=$producttypeinfo->ptName;
-			$parentId=$producttypeinfo->parentId;
-			$remark=$producttypeinfo->remark;
+			function query_s_producttypeinfo($s_producttypeinfo){
+		 	$ptId=$s_producttypeinfo->ptId;
+			$ptName=$s_producttypeinfo->ptName;
+			$parentId=$s_producttypeinfo->parentId;
+			$remark=$s_producttypeinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1360,23 +1360,23 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 } 
-			function query_add_s_producttypeinfo($producttypeinfo);{
-		 	$ptId=$producttypeinfo->ptId;
-			$ptName=$producttypeinfo->ptName;
-			$parentId=$producttypeinfo->parentId;
-			$remark=$producttypeinfo->remark;
-			
-			$DBUtil=new DBUtil();
-			$con=$DBUtil->getCon();
-			$sql='INSERT INTO s_producttypeinfo(ptId,ptName,parentId,remark) VALUE(?,?,?,?)';
-			$stm->bind_param('isis',$psId,$psName,$order,$psVal,$remark,$ptid);
-			$flag=$stm->execute();
-			return $flag;
-		 }
-			function query_add_s_protypeattribute($protypeattribute);{
-		 	$attId=$protypeattribute->attId;
-			$typeID=$protypeattribute->typeID;
-		    $attName=$protypeattribute->attName;
+//			function query_s_producttypeinfo($s_producttypeinfo){
+//		 	$ptId=$s_producttypeinfo->ptId;
+//			$ptName=$s_producttypeinfo->ptName;
+//			$parentId=$s_producttypeinfo->parentId;
+//			$remark=$s_producttypeinfo->remark;
+//			
+//			$DBUtil=new DBUtil();
+//			$con=$DBUtil->getCon();
+//			$sql='INSERT INTO s_producttypeinfo(ptId,ptName,parentId,remark) VALUE(?,?,?,?)';
+//			$stm->bind_param('isis',$psId,$psName,$order,$psVal,$remark,$ptid);
+//			$flag=$stm->execute();
+//			return $flag;
+//		 }
+			function query_s_protypeattribute($s_protypeattribute){
+		 	$attId=$s_protypeattribute->attId;
+			$typeID=$s_protypeattribute->typeID;
+		    $attName=$s_protypeattribute->attName;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1385,16 +1385,16 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-		    function query_add_s_receiveaddrinfo($receiveaddrinfo);{
-		 	$raId=$receiveaddrinfo->raId;
-			$aId=$receiveaddrinfo->aId;
-			$raName=$receiveaddrinfo->raName;
-			$addr=$receiveaddrinfo->addr;
-			$phone=$receiveaddrinfo->phone;
-			$mobile=$receiveaddrinfo->mobile;
-			$zipCode=$receiveaddrinfo->zipCode;
-			$isDefaule=$receiveaddrinfo->isDefaule;
-			$remark=$receiveaddrinfo->remark;
+		    function query_s_receiveaddrinfo($s_receiveaddrinfo){
+		 	$raId=$s_receiveaddrinfo->raId;
+			$aId=$s_receiveaddrinfo->aId;
+			$raName=$s_receiveaddrinfo->raName;
+			$addr=$s_receiveaddrinfo->addr;
+			$phone=$s_receiveaddrinfo->phone;
+			$mobile=$s_receiveaddrinfo->mobile;
+			$zipCode=$s_receiveaddrinfo->zipCode;
+			$isDefaule=$s_receiveaddrinfo->isDefaule;
+			$remark=$s_receiveaddrinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1403,15 +1403,15 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-			function query_add_s_refundinfo($refundinfo);{
-		 	$rfId=$refundinfo->rfId;
-		    $oId=$refundinfo->oId;
-			$totalAmount=$refundinfo->totalAmount;
-			$cId=$refundinfo->cId;
-			$operator=$refundinfo->operator;
-			$memo=$refundinfo->memo;
-			$createTime=$refundinfo->createTime;
-			$remark=$refundinfo->remark;
+			function query_s_refundinfo($s_refundinfo){
+		 	$rfId=$s_refundinfo->rfId;
+		    $oId=$s_refundinfo->oId;
+			$totalAmount=$s_refundinfo->totalAmount;
+			$cId=$s_refundinfo->cId;
+			$operator=$s_refundinfo->operator;
+			$memo=$s_refundinfo->memo;
+			$createTime=$s_refundinfo->createTime;
+			$remark=$s_refundinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1420,13 +1420,13 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-			function query_add_s_sendinfo($sendinfo);{
-		 	$sId=$sendinfo->sId;
-			$oId=$sendinfo->oId;
-			$express=$sendinfo->express;
-			$number=$sendinfo->number;
-			$createTime=$sendinfo->createTime;
-			$remark=$sendinfo->remark;
+			function query_s_sendinfo($s_sendinfo){
+		 	$sId=$s_sendinfo->sId;
+			$oId=$s_sendinfo->oId;
+			$express=$s_sendinfo->express;
+			$number=$s_sendinfo->number;
+			$createTime=$s_sendinfo->createTime;
+			$remark=$s_sendinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();
@@ -1435,14 +1435,14 @@ class DBUtil{
 			$flag=$stm->execute();
 			return $flag;
 		 }
-			function query_add_s_userinfo($userinfo);{
-		 	$uId=$userinfo->uId;
-			$uName=$userinfo->uName;
-			$uPwd=$userinfo->uPwd;
-			$uType=$userinfo->uType;
-			$uState=$userinfo->uState;
-			$createTime=$userinfo->createTime;
-			$remark=$userinfo->remark;
+			function query_s_userinfo($s_userinfo){
+		 	$uId=$s_userinfo->uId;
+			$uName=$s_userinfo->uName;
+			$uPwd=$s_userinfo->uPwd;
+			$uType=$s_userinfo->uType;
+			$uState=$s_userinfo->uState;
+			$createTime=$s_userinfo->createTime;
+			$remark=$s_userinfo->remark;
 			
 			$DBUtil=new DBUtil();
 			$con=$DBUtil->getCon();

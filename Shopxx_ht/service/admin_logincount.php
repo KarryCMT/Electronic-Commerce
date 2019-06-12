@@ -17,10 +17,9 @@ if($flge){
     echo "<script>alert('登录成功')</script>";
     echo "<script>window.location.href='../index.php';</script>";
     $_SESSION["user"]=$s_userinfo;
-	var_dump($_SESSION["user"]);
 }else{
     echo "<script>alert('登录失败')</script>";
-    echo "<script>window.location.href='../admin_login.php';</script>";
+    echo "<script>window.location.href='../admin.php';</script>";
 }
 
 ?>

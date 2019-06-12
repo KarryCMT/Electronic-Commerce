@@ -33,27 +33,37 @@ A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
 </style>
  <?php
-   	require_once dirname(dirname(__FILE__))."\util\DBUtil.php";
-   	$dbutil=new DBUtil();
-   	$sql_bId="selcet bId from s_brandinfo order by bId desc limit 1";
-   	$bId=1;
-   	if($msg=mysqli_fetch_array($res)){
-   		$bId=$msg['bId'];
-   		$bId=$bId+1;
-   	}
-   	$sql="select * from s_producttyoeinfo";
-   	$arr=$dbutil->query_s_producttyoeinfo($sql);
-   	
-   	?>
+	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
+	$dbutil=new DBUtil();
+	$bId="";
+		$sql="SELECT ptId,ptName FROM s_producttypeinfo";
+		var_dump($sql);
+		$res_type=$dbutil->query($sql);
+		
+		$sql_bId="SELECT bId FROM s_brandinfo ORDER BY bId DESC LIMIT 1";
+		$res=$dbutil->query($sql_bId);
+		if($msg=mysqli_fetch_array($res)){
+			
+			$bId=$msg['bId'];
+			$bId+=1;
+		}else{
+			$bId='1';
+		}
+	?>
 	<div class="path">
 		<a href="http://demo.shopxx.net/admin/common/index.jhtml">首页</a> &raquo; 添加商品品牌</div>
-	<form id="inputForm" action="/Shopxx_ht/servlet/Braind_addServlet" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="/Shopxx_ht/admin/Braind/addBrand_conts.php" method="post" enctype="multipart/form-data">
 		<table class="input">
+			<tr>
+				<td>
+					<input type="hidden" name="bId" value="<?=$bId;?>" class="text" maxlength="200" />				
+				</td>
+			</tr>
 			<tr>
 				<th>
 					<span class="requiredField">*</span>名称:				</th>
 				<td>
-					<input type="text" name="name" class="text" maxlength="200" />				</td>
+					<input type="text" name="bName" class="text" maxlength="200" />				</td>
 			</tr>
 			
 			
@@ -62,16 +72,16 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					商品分类:
 				</th>
 				<td>
-					<select id="productCategoryId" name="productCategoryId"  >
+					<select id="productCategoryId" name="ptId"  >
 				
-							<option value="1" disabled="disabled">
-							aaa
-							</option>
-							aaaa
-							<option >
-								aaa
-							</option>
-							
+							<option>-----请选择-----</option>
+							<?php
+							while($msg_type=mysqli_fetch_array($res_type)){
+							?>
+							<option value="<?=$msg_type['ptId']?>"><?=$msg_type['ptName']?></option>
+							<?php
+							}
+							?>
 							
 					</select>
 				</td>
@@ -83,7 +93,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					描述:				
 					</th>
 				<td>
-				<textarea name="introduce"  id="content" style="display:none"></textarea>
+				<textarea name="bIntroduce"  id="content" style="display:none"></textarea>
 					<script type="text/javascript">CKEDITOR.replace('content');</script>
 					</td>
 			</tr>
@@ -92,7 +102,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					官网:				
 					</th>
 				<td>
-					<input type="text" name="Url" class="text" maxlength="200" />				</td>
+					<input type="text" name="bUrl" class="text" maxlength="200" />				</td>
 			</tr>
 			<tr>
 				<th>
@@ -106,7 +116,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					LOGO:				
 					</th>
 				<td>
-					<input type="file" name="file" class="text" maxlength="200" />				</td>
+					<input type="file" name="bLog" class="text" maxlength="200" />				</td>
 			</tr>
 			<tr>
 				<th>&nbsp;				</th>

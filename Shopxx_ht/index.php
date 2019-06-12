@@ -97,7 +97,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 									<a href="#system">系统</a>
 								</li>
 						<li>
-							<a href="index.html" target="_blank">首页</a>
+							<a href="../Shopxx_qt/index.php" target="_blank">首页</a>
 						</li>
 					</ul>
 				</div>
@@ -110,8 +110,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					<strong><?=$obj->uName?></strong>
 					您好!
 					<a href="#" target="iframe">[账号设置]</a>
-					<a href="#" target="_top">[注销]</a>
-					<a href="login.html" target="_top">[登录]</a>
+					<a href="admin.php" target="_top">[注销]</a>
 				</div>
 			</th>
 		</tr>
