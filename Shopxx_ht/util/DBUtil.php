@@ -94,7 +94,7 @@ class DBUtil{
 			$arr=NULL;
 			$dbutil=new DBUtil();
 			$sql="SELECT *FROM s_brandinfo";
-			$res=$dbutil->query($sql);
+			$res=$dbutil->query_all($sql);
 			while($msg_bra=mysqli_fetch_array($res)){
 				$s_brandinfo=new s_brandinfo();
 				$bId=$msg_bra['bId'];
@@ -466,8 +466,8 @@ class DBUtil{
 		}
 		//获取商品品牌列表中的某一条数据
 		function get_one_Braind($sql){
-			$until=new DBUtil();
-			$res=$until->query($sql);
+			$dbutil=new DBUtil();
+			$res=$dbutil->query($sql);
 			$s_brandinfo=new s_brandinfo();
 			if($msg_bra=mysqli_fetch_array($res)){
 				$bId=$msg_bra['bId'];
@@ -488,8 +488,8 @@ class DBUtil{
 		}
 		//获取文章列表中的某一条数据
 		function get_one_Article($sql){
-			$until=new DBUtil();
-			$res=$until->query($sql);
+			$dbutil=new DBUtil();
+			$res=$dbutil->query($sql);
 			$s_articleinfo=new s_articleinfo();
 			if($msg_bra=mysqli_fetch_array($res)){
 				$ArId=$msg_bra['ArId'];

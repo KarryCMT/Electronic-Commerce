@@ -21,21 +21,40 @@ function submits(){
 
 }
 </script>
+<?php
+	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
+	$dbutil=new DBUtil();
+	$count='';
+	$sql_count="SELECT COUNT(*) FROM s_brandinfo";
+	$res=$dbutil->query_all($sql_count);
+	if($msg=mysqli_fetch_array($res)){
+			//var_dump($msg);
+			$count=$msg['COUNT(*)'];//数据总条数
+		}
+	$sql="SELECT *FROM s_brandinfo";//查询要显示的数据
+	$arr=$dbutil->query_braind($sql);
+	//$bId=$_GET['bId'];
+	//$sql_emp="select * from s_brandinfo where bId=".$bId;
+	if($_POST){
+		$value = $_POST['check'];
+	echo '你的选择:'.implode(',',$value);
+	}
+	?>
 </head>
 <body>
 	<div class="breadcrumb">
-		<a href="/admin/common/index.jhtml">首页</a> &raquo; 品牌列表 <span>(共--条记录)</span>
+		<a href="../../index.php">首页</a> &raquo; 品牌列表 <span>(共<?=$count?></span>条记录)</span>
 	</div>
-	<form id="listForm" action="" method="get">
+	<form id="listForm" action="../../service/delete_Braind.php" method="post">
 		<div class="bar">
-			<a href="addBraind.jsp" class="iconButton">
+			<a href="../Braind/addBraind.php" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
 			<div class="buttonGroup">
 				<a href="javascript:;" onclick="submits()" id="deleteButton" class="iconButton disabled">
 					<span class="deleteIcon">&nbsp;</span>删除
 				</a>
-				<a href="javascript:;" id="refreshButton" class="iconButton">
+				<a href="" onclick="location.reload():;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
 			</div>
@@ -46,42 +65,47 @@ function submits(){
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="name">名称</a>
+					<a href="javascript:;" class="sort" name="name">编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="logo">logo</a>
+					<a href="javascript:;" class="sort" name="logo">名称</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="url">网址</a>
+					<a href="javascript:;" class="sort" name="url">介绍</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="order">排序</a>
+					<a href="javascript:;" class="sort" name="order">网址</a>
 				</th>
 				<th>
 					<span>操作</span>
 				</th>
 				
 						</tr>
+					<?php
+					foreach($arr as $s_brandinfo){
+						?>
 				<tr>
 					<td>
-						<input type="checkbox" name="ids" value="cbox" />
+						<input type="checkbox" name="check[]" value="<?=$s_brandinfo->bId?>" />
 					</td>
 					<td>
-						bbb
+							<?=$s_brandinfo->bId?>
 					</td>
 					<td>
-							<a href="#">查看</a>
+							<?=$s_brandinfo->bName?>
 					</td>
 					<td>
-							<a href="#" target="_blank">bbb</a>
+							<?=$s_brandinfo->remark?>
 					</td>
 					<td>
-						1
+							<?=$s_brandinfo->bUrl?>
 					</td>
 					<td>
-						<a href="EditBraind.jsp?id=1">[编辑]</a>
+						<a href="EditBraind.php?bId=<?=$s_brandinfo->bId?>">[编辑]</a>
 					</td>
-				</tr>	
+				</tr>
+				<?php	}
+					?>	
 		</table>
 	</form>
 </body>

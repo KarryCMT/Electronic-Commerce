@@ -34,6 +34,22 @@ $().ready(function() {
 });
 </script>
 </head>
+<?php
+	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
+	$dbutil=new DBUtil();
+	$ArId="";
+		$sql_articletype="SELECT AtId,ArName FROM s_articletype";
+		$res_type=$dbutil->query($sql_articletype);
+		$sql_ArId="SELECT ArId FROM s_articleinfo ORDER BY ArId DESC LIMIT 1";
+		$res=$dbutil->query($sql_ArId);
+		if($msg=mysqli_fetch_array($res)){
+			//var_dump($msg);
+			$ArId=$msg['ArId'];
+			$ArId+=1;
+		}else{
+			$ArId='1';
+		}
+	?>
 <body>
 	<div class="breadcrumb">
 		<a href="   ">首页</a> &raquo; 添加文章
@@ -41,9 +57,14 @@ $().ready(function() {
 	<form id="inputForm" action="  " method="post">
 		<table class="input">
 			<tr>
+				<td>
+					<input type="hidden" name="ArId" value="<?=$ArId?>" class="text"  maxlength="200" />
+				</td>
+			</tr>
+			<tr>
 				<th>
 					<span class="requiredField">*</span>标题:
-					<input type="hidden" name="type" value="2"/>
+					<input type="hidden" name="ArTitle" value="2"/>
 				</th>
 				<td>
 					<input type="text" name="title" class="text"  maxlength="200" />
@@ -54,10 +75,17 @@ $().ready(function() {
 					<span class="requiredField">*</span>文章分类:
 				</th>
 				<td>
-					<select name="articleCategoryId">
-						<option value="1">
-								aaa
+					<select name="AtId">
+						<option >
+								--请选择--
 						</option>
+						<?php
+						while($msg_type=mysqli_fetch_array($res_type)){
+							?>
+							<option value="<?=$msg_type['AtId']?>"><?=$msg_type['ArName']?></option>
+						<?php
+							}
+							?>
 					</select>
 				</td>
 			</tr>
@@ -66,7 +94,7 @@ $().ready(function() {
 					作者:
 				</th>
 				<td>
-					<input type="text" name="author" class="text"   maxlength="200" />
+					<input type="text" name="AtAuthor" class="text"   maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -75,8 +103,8 @@ $().ready(function() {
 				</th>
 				<td>
 					<label>
-						<input type="checkbox"  name="state" value="1" checked="checked" />是否发布
-						<input type="hidden" name="state" value="0" />
+						<input type="checkbox"  name="States" value="1" checked="checked" />是否发布
+						<input type="hidden" name="States" value="0" />
 					</label>
 					<label>
 						<input type="checkbox" name="isTop" checked="checked"  value="1" />是否置顶
@@ -90,8 +118,8 @@ $().ready(function() {
 				</th>
 				<td>
 						<label>
-							<input type="checkbox" name="tagIds" checked="checked" value="1" />热点
-							<input type="hidden" name="tagIds" value="1" />热点
+							<input type="checkbox" name="ArMark" checked="checked" value="1" />热点
+							<input type="hidden" name="ArMark" value="1" />热点
 						</label>
 						
 				</td>
@@ -101,7 +129,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td>
-					<textarea name="content"  id="content" style="display:none"></textarea>
+					<textarea name="ArContent"  id="content" style="display:none"></textarea>
 					<script type="text/javascript">CKEDITOR.replace('content');</script>
 				</td>
 			</tr>

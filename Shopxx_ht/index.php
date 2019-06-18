@@ -119,7 +119,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 				<dl id="product" class="default">
 					<dt>商品管理</dt>
 						<dd>
-							<a href="admin/product/list.html" target="iframe">商品管理</a>
+							<a href="admin/Braind/EditBraind.php" target="iframe">商品管理</a>
 						</dd>
 						<dd>
 							<a href="admin/paytype/list.html" target="iframe">商品分类</a>
@@ -127,9 +127,9 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 				
 						<dd>
 							<a href="admin/paytype/list.html" target="iframe">规格管理</a>
-						</dd>
+						</dd>	
 						<dd>
-							<a href="admin/paytype/list.html" target="iframe">品牌管理</a>
+							<a href="admin/Braind/list_Braind.php" target="iframe">品牌管理</a>
 						</dd>
 				</dl>
 				<dl id="order">

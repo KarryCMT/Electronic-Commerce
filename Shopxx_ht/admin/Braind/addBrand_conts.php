@@ -2,7 +2,7 @@
 
 	//添加品牌
 	header("ConTent-type:text/html;charset=utf-8");
-	require_once dirname(dirname(__FILE__)).'\util\dbutil.php';
+	require_once dirname(dirname(dirname(__FILE__))).'\util\dbutil.php';
 	$bId=$_POST['bId'];
 	$ptId=$_POST['ptId'];
 	$bName=$_POST['bName'];

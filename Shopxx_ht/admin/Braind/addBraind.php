@@ -22,7 +22,33 @@
 	padding-right: 6px;
 }
 </style>
+<script> //点击事件
+//onload=function(){
+//  var sels = document.getElementsByTagName("select");
+//  for(var i = 0; i < sels.length; i++){
+//      sels[i].onchange = function(){
+//          this.form.submit();
+//      }
+//  }
+//}
+</script>
 </head>
+<?php
+	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
+	$util=new DBUtil();
+	$bId="";
+		$sql_s_producttypeinfo="SELECT ptId,ptName FROM s_producttypeinfo";
+		$res_type=$util->query_all($sql_s_producttypeinfo);
+		$sql_bId="SELECT bId FROM s_brandinfo ORDER BY bId DESC LIMIT 1";
+		$res=$util->query_all($sql_bId);
+		if($msg=mysqli_fetch_array($res)){
+			//var_dump($msg);
+			$bId=$msg['bId'];
+			$bId+=1;
+		}else{
+			$bId='1';
+		}
+	?>
 <body>
 
 <!-- Copyright � 2005. Spidersoft Ltd -->
@@ -32,27 +58,9 @@ A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background
 A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
 </style>
- <?php
-	require_once dirname(dirname(dirname(__FILE__))).'\util\DBUtil.php';
-	$dbutil=new DBUtil();
-	$bId="";
-		$sql="SELECT ptId,ptName FROM s_producttypeinfo";
-		var_dump($sql);
-		$res_type=$dbutil->query($sql);
-		
-		$sql_bId="SELECT bId FROM s_brandinfo ORDER BY bId DESC LIMIT 1";
-		$res=$dbutil->query($sql_bId);
-		if($msg=mysqli_fetch_array($res)){
-			
-			$bId=$msg['bId'];
-			$bId+=1;
-		}else{
-			$bId='1';
-		}
-	?>
 	<div class="path">
-		<a href="http://demo.shopxx.net/admin/common/index.jhtml">首页</a> &raquo; 添加商品品牌</div>
-	<form id="inputForm" action="/Shopxx_ht/admin/Braind/addBrand_conts.php" method="post" enctype="multipart/form-data">
+		<a href="../../index.php">首页</a> &raquo; 添加商品品牌</div>
+	<form id="inputForm" action="../Braind/addBrand_conts.php" method="post" enctype="multipart/form-data">
 		<table class="input">
 			<tr>
 				<td>
@@ -61,9 +69,11 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>名称:				</th>
+					<span class="requiredField">*</span>名称:				
+				</th>
 				<td>
-					<input type="text" name="bName" class="text" maxlength="200" />				</td>
+					<input type="text" name="bName" class="text" maxlength="200" />				
+				</td>
 			</tr>
 			
 			
@@ -72,17 +82,17 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					商品分类:
 				</th>
 				<td>
-					<select id="productCategoryId" name="ptId"  >
-				
-							<option>-----请选择-----</option>
-							<?php
-							while($msg_type=mysqli_fetch_array($res_type)){
+					<select name="ptId">
+						<option >
+								--请选择--
+						</option>
+						<?php
+						while($msg_type=mysqli_fetch_array($res_type)){
 							?>
 							<option value="<?=$msg_type['ptId']?>"><?=$msg_type['ptName']?></option>
-							<?php
+						<?php
 							}
 							?>
-							
 					</select>
 				</td>
 			</tr>
@@ -116,13 +126,13 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 					LOGO:				
 					</th>
 				<td>
-					<input type="file" name="bLog" class="text" maxlength="200" />				</td>
+					<input type="file" name="blog" class="text" maxlength="200" />				</td>
 			</tr>
 			<tr>
 				<th>&nbsp;				</th>
 				<td>
 					<input type="submit" class="button" value="确&nbsp;&nbsp;定" />
-					<input type="button" class="button" value="返&nbsp;&nbsp;回" onclick="location.href='list.jhtml'" />				</td>
+					<input type="button" class="button" value="返&nbsp;&nbsp;回" onclick="location.href='../paytype/list_Braind.php'" />				</td>
 			</tr>
 		</table>
 	</form>
